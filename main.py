@@ -5,8 +5,7 @@ import random
 # External packages
 
 # Imports of custom functions
-from categories import read_file
-from menu import theme_menu, welcome, game_over, user_guess, clear_terminal
+from functions import theme_menu, welcome, game_over, user_guess, clear_terminal, read_file
 
 # Start game --> choose catergory menu
 welcome()

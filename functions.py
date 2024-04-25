@@ -1,5 +1,5 @@
 import os
-from categories import spooky
+import random
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -21,8 +21,14 @@ def theme_menu():
     return user_choice
 
 
-def game_over():
-    pass
+def read_file(filename):
+    try:
+        with open(filename, "r") as f:
+            words = f.read().splitlines()
+            chosen_word = random.choice(words)
+        return chosen_word
+    except FileNotFoundError:
+        return f"Error: File '{filename}' not found."
 
 
 def user_guess():
@@ -38,5 +44,8 @@ def user_guess():
                 hidden_word[i] = letter
 
         print(" ".join(hidden_word))
+
+def game_over():
+    pass
 
         
