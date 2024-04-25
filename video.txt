@@ -1,0 +1,10 @@
+mario
+sonic
+pacman
+zelda
+tetris
+pokémon
+minecraft
+fortnite
+skyrim
+tekken

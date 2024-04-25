@@ -1,0 +1,10 @@
+zeus
+athena
+thor
+odin
+anubis
+apollo
+poseidon
+medusa
+hercules
+persephone

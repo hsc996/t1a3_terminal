@@ -1,35 +1,119 @@
 # System packages
 import os.path
+import random
 
 # External packages
 
 # Imports of custom functions
-from categories import spooky, geography, video_games, mythology, food
-from menu_functions import theme_menu, welcome
+from categories import read_file
+from menu import theme_menu, welcome, game_over, user_guess, clear_terminal
 
 # Start game --> choose catergory menu
 welcome()
     
 choice = ""
-spooky_file = "spooky.txt"
 
 while choice != "6":
     choice = theme_menu()
 
     if (choice == "1"):
-        spooky(spooky_file)
+        game_word = read_file("spooky.txt")
+        user_guess()
     elif (choice == "2"):
-        geography()
+        game_word  = read_file("geography.txt")
+        user_guess()
     elif (choice == "3"):
-        video_games()
+        game_word = read_file("video.txt")
+        user_guess()
     elif (choice == "4"):
-        mythology()
+        game_word = read_file("myth.txt")
+        user_guess()
     elif (choice == "5"):
-        food()
+        game_word = read_file("food.txt")
+        user_guess()
     elif (choice == "6"):
+        print("You've exited the program. Goodbye!")
         break
     else:
         print("Please choose from the option list provided")
 
 
-print("You've exited the program. Goodbye!")
+game_over = False
+
+HANGMAN = [
+    f'''
+  +---------+
+            |
+            |
+            |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+            |
+            |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+            |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /          |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ / \\       |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /|\\       |
+  |         |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /|\\       |
+  |         |
+ /          |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /|\\       |
+  |         |
+ / \\       |
+            |
+===============
+'''
+]
+
+

@@ -1,0 +1,11 @@
+reykjavik
+athens
+moscow
+tbilisi
+nairobi
+bangkok
+istanbul
+rio
+mumbai
+toronto
+prague
