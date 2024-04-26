@@ -1,6 +1,81 @@
 import os
 import random
 
+HANGMAN = [
+    f'''
+  +---------+
+            |
+            |
+            |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+            |
+            |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+            |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /          |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ / \\        |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /|\\        |
+  |         |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /|\\        |
+  |         |
+ /          |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /|\\        |
+  |         |
+ / \\        |
+            |
+===============
+'''
+]
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -28,26 +103,42 @@ def read_file(filename):
             chosen_word = random.choice(words)
         return chosen_word
 
+def display_hangman(incorrect_guesses):
+    print(HANGMAN[incorrect_guesses])
+
 
 def user_guess(file_name):
     game_word = read_file(file_name)
+    incorrect_guesses = 0
     hidden_word = ['_'] * len(game_word)
     guessed_letters = []
 
-    while game_over is not False:
-
+    while True:  # Changed condition to True for the loop to be infinite unless broken explicitly
         guess = input("\nGuess a letter: ")
 
-        for i, letter in enumerate(game_word):
-            if letter != '_' and guess == letter:
-                hidden_word[i] = letter
+        if guess in game_word:  # Check if the guess is correct
+            for i, letter in enumerate(game_word):
+                if letter == guess:
+                    hidden_word[i] = letter
+        else:
+            incorrect_guesses += 1  # Increment incorrect_guesses only if the guess is incorrect
+            print(display_hangman(incorrect_guesses))
+        
         print(" ".join(hidden_word))
 
         if '_' not in hidden_word:
             clear_terminal()  # Check if no more underscores are left
-            print("CONGRATUGLATIONS!\n\nYou won!")
+            print("CONGRATULATIONS!\n\nYou won!")
+            print("\n\nPlay again?\n\n")
+            break
+        elif incorrect_guesses == 7:
+            clear_terminal()
+            print("\nYOU LOSE!\n\nThe correct word was:", game_word)
+            print(HANGMAN[7] + "\n")
+            print("\n\nPlay again?\n\n")
             break
 
+        # Error handling 
         if guess == game_word:
             hidden_word = game_word
         elif not guess.isalpha() or len(guess) > 1:
