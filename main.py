@@ -5,39 +5,54 @@ import random
 # External packages
 
 # Imports of custom functions
-from functions import theme_menu, welcome, game_over, user_guess, clear_terminal, read_file
+from functions import theme_menu, welcome, user_guess, clear_terminal
 
 # Start game --> choose catergory menu
 welcome()
-    
+
+# Game variables
+game_over = False
+game_win = False
+game_word = None
+game_stage = 0
+total_lives = 10
+
+def game_start():
+    clear_terminal()
+    print(f"\nYou've chosen the {category} category!\n")
+          
+    user_guess(f"{category}.txt")
+
+
 choice = ""
 
 while choice != "6":
     choice = theme_menu()
+    valid_choices = ["1", "2", "3", "4", "5", "6"]
 
+    if choice not in valid_choices:
+        print("Invalid choice! Please select from the menu above")
     if (choice == "1"):
-        game_word = read_file("spooky.txt")
-        user_guess()
+        category = "spooky"
+        game_start()
     elif (choice == "2"):
-        game_word  = read_file("geography.txt")
-        user_guess()
+        category = "geography"
+        game_start()
     elif (choice == "3"):
-        game_word = read_file("video.txt")
-        user_guess()
+        category = "video games"
+        game_start()
     elif (choice == "4"):
-        game_word = read_file("myth.txt")
-        user_guess()
+        category = "mythology"
+        game_start()
     elif (choice == "5"):
-        game_word = read_file("food.txt")
-        user_guess()
+        category = "culinary delights"
+        game_start()
     elif (choice == "6"):
         print("You've exited the program. Goodbye!")
         break
-    else:
-        print("Please choose from the option list provided")
 
 
-game_over = False
+
 
 HANGMAN = [
     f'''

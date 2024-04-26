@@ -1,6 +1,7 @@
 import os
 import random
 
+
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -22,30 +23,41 @@ def theme_menu():
 
 
 def read_file(filename):
-    try:
         with open(filename, "r") as f:
             words = f.read().splitlines()
             chosen_word = random.choice(words)
         return chosen_word
-    except FileNotFoundError:
-        return f"Error: File '{filename}' not found."
 
 
-def user_guess():
-    game_word = spooky()
+def user_guess(file_name):
+    game_word = read_file(file_name)
     hidden_word = ['_'] * len(game_word)
+    guessed_letters = []
 
     while game_over is not False:
 
-        guess = input("Guess letter: ")
+        guess = input("\nGuess a letter: ")
 
         for i, letter in enumerate(game_word):
             if letter != '_' and guess == letter:
                 hidden_word[i] = letter
-
         print(" ".join(hidden_word))
+
+        if '_' not in hidden_word:
+            clear_terminal()  # Check if no more underscores are left
+            print("CONGRATUGLATIONS!\n\nYou won!")
+            break
+
+        if guess == game_word:
+            hidden_word = game_word
+        elif not guess.isalpha() or len(guess) > 1:
+            print(f'Invalid option, try again')
+        elif guess in guessed_letters:
+            print(f'Letter already guessed, try another.')
+        else:
+            guessed_letters.append(guess)
+            guessed_letters.sort()
+
 
 def game_over():
     pass
-
-        
