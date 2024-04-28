@@ -98,6 +98,11 @@ class Hangman:
             guesses_left -= 1
             hangman_stage += 1
 
+    def display_progress(self):
+        print(' '.join(self.current_progress))
+        print("\nLetters guessed:", ', '.join(sorted(self.guessed_letters))) 
+        print(HANGMAN[self.hangman_stage])
+
 
 
 
