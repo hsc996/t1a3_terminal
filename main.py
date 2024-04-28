@@ -1,5 +1,6 @@
-# To be run in terminal:
-# chmod +x run.sh THEN ./run.sh
+# RUN IN TERMINAL TO COMMENCE GAME:
+# 1. chmod +x run.sh
+# 2. ./run.sh
 
 # System packages
 import random
@@ -124,13 +125,17 @@ class Hangman:
     def is_game_over(self):
         if '_' not in self.current_progress:
             clear_terminal()
-            print(f"{Back.green}YOU WONNNNNNNN\n\nCongratulations!\n{Style.reset}")
+            print("*************************************")
+            print(f"{Fore.white}{Back.green}\n!!!  YOU WON  !!!\n\nCongratulations!\n{Style.reset}")
+            print("*************************************")
             print("Play again? Y/N\n")
             return True
         elif self.guesses_left == 0:
             clear_terminal()
+            print(f"{Fore.white}{Back.red}!!!  GAME OVER  !!!{Style.reset}\n")
             print(HANGMAN[7])
-            print(f"{Back.red}GAME OVER\n\nBetter luck next time, bucko.\nThe word was: {self.word}{Style.reset}\n")
+            print(f"{Fore.white}{Back.red}\nBetter luck next time, bucko.\nThe correct word was: {self.word}{Style.reset}\n")
+            print("Play again? Y/N\n")
             return True
         return False
 
@@ -168,7 +173,11 @@ def game_start():
             print(f"\nYou have {game.guesses_left} guesses remaining\n")
             game.display_progress()
             guess = input("Guess a letter: ")
-            game.guess(guess)
+
+            if guess.strip() == "":
+                print(f"\n{Fore.red}Invalid guess! Try again!{Style.reset}")
+            else:
+                game.guess(guess)
     else:
         print("Invalid category choice. Please select a valid category.")
 
@@ -176,10 +185,9 @@ if __name__ == "__main__":
     game_start()
 
 # Current issues:
-# Need to come up with an error message if anything but letters entered for letter guess/ if several letters entered
-# Bash script not running when game initialised
 # Need to write reset function that allows user to play again
 # Error handling to create error message when user selects invalid catgory
 # Error handling - Enter button being taken as a correct guess
+# {Fore.white} not working???
 
 
