@@ -128,16 +128,17 @@ class Hangman:
             print("*************************************")
             print(f"{Fore.white}{Back.green}\n!!!  YOU WON  !!!\n\nCongratulations!\n{Style.reset}")
             print("*************************************")
-            print("Play again? Y/N\n")
+            reset()
             return True
         elif self.guesses_left == 0:
             clear_terminal()
             print(f"{Fore.white}{Back.red}!!!  GAME OVER  !!!{Style.reset}\n")
             print(HANGMAN[7])
             print(f"{Fore.white}{Back.red}\nBetter luck next time, bucko.\nThe correct word was: {self.word}{Style.reset}\n")
-            print("Play again? Y/N\n")
+            reset()
             return True
         return False
+    
 
 # Function to get a random word from a list
 def get_random_word(category):
@@ -179,7 +180,21 @@ def game_start():
             else:
                 game.guess(guess)
     else:
-        print("Invalid category choice. Please select a valid category.")
+        print(f"{Fore.red}Invalid category choice. Please select a valid category.{Style.reset}")
+
+
+# Asks the player if they want to play again & resets game
+def reset():
+    while True:
+        play_again = input("Play again?\n\nY/N")
+        if play_again == "Y":
+            game_start()
+        elif play_again == "N":
+            clear_terminal()
+            print("Thanks for playing!\n\nSEEYA NEXT TIME")
+            break
+        else:
+            print(f"\n{Fore.red}Invalid option, please try again.{Style.reset}")
 
 if __name__ == "__main__":
     game_start()
@@ -189,5 +204,7 @@ if __name__ == "__main__":
 # Error handling to create error message when user selects invalid catgory
 # Error handling - Enter button being taken as a correct guess
 # {Fore.white} not working???
+# Add option to exit program
+# Redirect to categories when invalid category chosen
 
 
