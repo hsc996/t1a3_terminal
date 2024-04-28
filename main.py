@@ -1,4 +1,3 @@
-# System packages
 import random
 import os
 
@@ -6,7 +5,7 @@ def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 HANGMAN = [
-    f'''
+    '''
   +---------+
             |
             |
@@ -92,24 +91,43 @@ class Hangman:
     def guess(self, letter):
         letter = letter.upper()
         if letter in self.guessed_letters:
-            print("You've already guessed that letter! Try again!")
+            print("You've already guessed that letter!")
+            return
+
+        self.guessed_letters.add(letter)
+
+        if letter in self.word:
+            print("CORRECT!")
+            for i, char in enumerate(self.word):
+                if char == letter:
+                    self.current_progress[i] = letter
         else:
-            print("INCORRECT")
-            guesses_left -= 1
-            hangman_stage += 1
+            print("INCORRECT!")
+            self.guesses_left -= 1
+            self.hangman_stage += 1
 
     def display_progress(self):
         print(' '.join(self.current_progress))
         print("\nLetters guessed:", ', '.join(sorted(self.guessed_letters))) 
         print(HANGMAN[self.hangman_stage])
 
+    def is_game_over(self):
+        if '_' not in self.current_progress:
+            clear_terminal()
+            print("YOU WON\n\nCongratulations!\n")
+            print("Play again?\n")
+            return True
+        elif self.guesses_left == 0:
+            print(HANGMAN[7])
+            print("Game over! The word was:", self.word)
+            return True
+        return False
 
-
-
-def find_random_word(category):
+# Function to get a random word from a list
+def get_random_word(category):
     filename = f"{category}.txt"
-    with open(filename, "r") as f:
-        word_list = [f.read().splitlines()]
+    with open(filename, 'r') as file:
+        word_list = [line.strip() for line in file]
     return random.choice(word_list)
 
 def game_start():
@@ -121,21 +139,22 @@ def game_start():
         5: "CULINARY_DELIGHTS"
     }
 
+    print("\nLET'S PLAY HANGMAN!")
     print("\nCATEGORIES:\n")
     for num, category in categories.items():
         print(f"{num}. {category}")
-    
-    choose_category = int(input("\nEnter the number to select a category: "))
-    selected_category = categories.get(choose_category)
+
+    category_choice = int(input("\nEnter a number to select a category: "))
+    selected_category = categories.get(category_choice)
 
     if selected_category:
         clear_terminal()
         print(f"You've selected the {category} category!\n")
-        word = find_random_word(selected_category)
+        word = get_random_word(selected_category)
         game = Hangman(word)
 
         while not game.is_game_over():
-            print(f"\nRemaining guesses: {game.guesses_left}")
+            print(f"\nYou have {game.guesses_left} guesses remaining")
             game.display_progress()
             guess = input("Guess a letter: ")
             game.guess(guess)
@@ -144,3 +163,11 @@ def game_start():
 
 if __name__ == "__main__":
     game_start()
+
+# Current issues:
+# Need to come up with an error message if anything but letters entered for letter guess/ if several letters entered
+# Currently not accessing from the correct file when a category selected - "culinary_delights" selected every time
+# Bash script not running when game initialised
+# Need to write reset function that allows user to play again
+
+
