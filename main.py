@@ -1,54 +1,141 @@
 # System packages
-import os.path
 import random
+import os
 
-# External packages
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-# Imports of custom functions
-from functions import theme_menu, welcome, user_guess, clear_terminal, display_hangman
+HANGMAN = [
+    f'''
+  +---------+
+            |
+            |
+            |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+            |
+            |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+            |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /          |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ / \\        |
+            |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /|\\        |
+  |         |
+            |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /|\\        |
+  |         |
+ /          |
+            |
+===============
+''','''
+  +---------+
+  |         |
+  O         |
+ /|\\        |
+  |         |
+ / \\        |
+            |
+===============
+'''
+]
 
-# Start game --> choose catergory menu
-welcome()
+class Hangman:
+    def __init__(self, word):
+        self.word = word.upper()
+        self.guesses_left = len(HANGMAN) - 1
+        self.guessed_letters = set()
+        self.current_progress = ['_' if letter.isalpha() else letter for letter in self.word]
+        self.hangman_stage = 0
 
-# Game variables
-game_over = False
-game_win = False
-game_word = None
-game_stage = 0
-total_lives = 7
+    def guess(self, letter):
+        letter = letter.upper()
+        if letter in self.guessed_letters:
+            print("You've already guessed that letter! Try again!")
+        else:
+            print("INCORRECT")
+            guesses_left -= 1
+            hangman_stage += 1
+
+
+
+
+def find_random_word(category):
+    filename = f"{category}.txt"
+    with open(filename, "r") as f:
+        word_list = [f.read().splitlines()]
+    return random.choice(word_list)
 
 def game_start():
-    clear_terminal()
-    print(f"\nYou've chosen the {category} category!\n")
-          
-    user_guess(f"{category}.txt")
+    categories = {
+        1: "SPOOKY",
+        2: "GEOGRAPHY",
+        3: "VIDEO_GAMES",
+        4: "MYTHOLOGY",
+        5: "CULINARY_DELIGHTS"
+    }
 
-choice = ""
+    print("\nCATEGORIES:\n")
+    for num, category in categories.items():
+        print(f"{num}. {category}")
+    
+    choose_category = int(input("\nEnter the number to select a category: "))
+    selected_category = categories.get(choose_category)
 
-while choice != "6":
-    choice = theme_menu()
-    valid_choices = ["1", "2", "3", "4", "5", "6"]
+    if selected_category:
+        clear_terminal()
+        print(f"You've selected the {category} category!\n")
+        word = find_random_word(selected_category)
+        game = Hangman(word)
 
-    if choice not in valid_choices:
-        print("Invalid choice! Please select from the menu above")
-    if (choice == "1"):
-        category = "spooky"
-        game_start()
-    elif (choice == "2"):
-        category = "geography"
-        game_start()
-    elif (choice == "3"):
-        category = "games"
-        game_start()
-    elif (choice == "4"):
-        category = "mythology"
-        game_start()
-    elif (choice == "5"):
-        category = "food"
-        game_start()
-    elif (choice == "6"):
-        print("You've exited the program. Goodbye!")
-        break
+        while not game.is_game_over():
+            print(f"\nRemaining guesses: {game.guesses_left}")
+            game.display_progress()
+            guess = input("Guess a letter: ")
+            game.guess(guess)
+    else:
+        print("Invalid category choice. Please select a valid category.")
 
-
-
+if __name__ == "__main__":
+    game_start()

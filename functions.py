@@ -113,32 +113,19 @@ def user_guess(file_name):
     hidden_word = ['_'] * len(game_word)
     guessed_letters = []
 
-    while True:  # Changed condition to True for the loop to be infinite unless broken explicitly
-        guess = input("\nGuess a letter: ")
+    while True:
+        guess = input("\nGuess a letter: ").upper()
 
         if guess in game_word:  # Check if the guess is correct
             for i, letter in enumerate(game_word):
                 if letter == guess:
                     hidden_word[i] = letter
         else:
-            incorrect_guesses += 1  # Increment incorrect_guesses only if the guess is incorrect
-            print(display_hangman(incorrect_guesses))
+            incorrect_guesses += 1
         
         print(" ".join(hidden_word))
+        print(display_hangman(incorrect_guesses))
 
-        if '_' not in hidden_word:
-            clear_terminal()  # Check if no more underscores are left
-            print("CONGRATULATIONS!\n\nYou won!")
-            print("\n\nPlay again?\n\n")
-            break
-        elif incorrect_guesses == 7:
-            clear_terminal()
-            print("\nYOU LOSE!\n\nThe correct word was:", game_word)
-            print(HANGMAN[7] + "\n")
-            print("\n\nPlay again?\n\n")
-            break
-
-        # Error handling 
         if guess == game_word:
             hidden_word = game_word
         elif not guess.isalpha() or len(guess) > 1:
@@ -148,7 +135,21 @@ def user_guess(file_name):
         else:
             guessed_letters.append(guess)
             guessed_letters.sort()
+     
+        if '_' not in hidden_word:
+            clear_terminal()  # Check if no more underscores are left
+            print("CONGRATULATIONS!\n\nYou won!")
+            print("\n\nPlay again?\n\n")
+            break
+        elif incorrect_guesses == 7:
+            clear_terminal()
+            print("\nYOU LOSE!\n\nThe correct word was:", game_word)
+            print(HANGMAN[7])
+            print("\nPlay again?\n\n")
+            break
 
 
 def game_over():
     pass
+
+# Current error -- user penalised when guess occurs twice
