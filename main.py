@@ -98,16 +98,18 @@ class Hangman:
     def guess(self, letter):
         letter = letter.upper()
         if letter in self.guessed_letters:
-            print("You've already guessed that letter!")
+            print(f"\n{Fore.red}You've already guessed that letter!{Style.reset}")
             return
 
         self.guessed_letters.add(letter)
 
         if letter in self.word:
-            print(f"{Fore.green}CORRECT!{Style.reset}")
+            print(f"\n{Fore.green}CORRECT!{Style.reset}")
             for i, char in enumerate(self.word):
                 if char == letter:
                     self.current_progress[i] = letter
+        elif not letter.isalpha() or len(letter) > 1:
+            print(f"\n{Fore.red}Invalid guess! Try again!{Style.reset}")
         else:
             print(f"{Fore.red}INCORRECT!{Style.reset}")
             self.guesses_left -= 1
@@ -123,12 +125,12 @@ class Hangman:
         if '_' not in self.current_progress:
             clear_terminal()
             print(f"{Back.green}YOU WONNNNNNNN\n\nCongratulations!\n{Style.reset}")
-            print("Play again?\n")
+            print("Play again? Y/N\n")
             return True
         elif self.guesses_left == 0:
             clear_terminal()
             print(HANGMAN[7])
-            print(f"{Back.green}GAME OVER\n\nBetter luck next time, bucko.\nThe word was: {self.word}{Style.reset}\n")
+            print(f"{Back.red}GAME OVER\n\nBetter luck next time, bucko.\nThe word was: {self.word}{Style.reset}\n")
             return True
         return False
 
@@ -163,7 +165,7 @@ def game_start():
         game = Hangman(word)
 
         while not game.is_game_over():
-            print(f"\nYou have {game.guesses_left} guesses remaining")
+            print(f"\nYou have {game.guesses_left} guesses remaining\n")
             game.display_progress()
             guess = input("Guess a letter: ")
             game.guess(guess)
@@ -177,5 +179,7 @@ if __name__ == "__main__":
 # Need to come up with an error message if anything but letters entered for letter guess/ if several letters entered
 # Bash script not running when game initialised
 # Need to write reset function that allows user to play again
+# Error handling to create error message when user selects invalid catgory
+# Error handling - Enter button being taken as a correct guess
 
 
