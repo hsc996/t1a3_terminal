@@ -1,5 +1,12 @@
+# To be run in terminal:
+# chmod +x run.sh THEN ./run.sh
+
+# System packages
 import random
 import os
+
+# External packages
+from colored import Fore, Back, Style # type:ignore
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -97,14 +104,15 @@ class Hangman:
         self.guessed_letters.add(letter)
 
         if letter in self.word:
-            print("CORRECT!")
+            print(f"{Fore.green}CORRECT!{Style.reset}")
             for i, char in enumerate(self.word):
                 if char == letter:
                     self.current_progress[i] = letter
         else:
-            print("INCORRECT!")
+            print(f"{Fore.red}INCORRECT!{Style.reset}")
             self.guesses_left -= 1
             self.hangman_stage += 1
+
 
     def display_progress(self):
         print(' '.join(self.current_progress))
@@ -114,12 +122,13 @@ class Hangman:
     def is_game_over(self):
         if '_' not in self.current_progress:
             clear_terminal()
-            print("YOU WON\n\nCongratulations!\n")
+            print(f"{Back.green}YOU WONNNNNNNN\n\nCongratulations!\n{Style.reset}")
             print("Play again?\n")
             return True
         elif self.guesses_left == 0:
+            clear_terminal()
             print(HANGMAN[7])
-            print("Game over! The word was:", self.word)
+            print(f"{Back.green}GAME OVER\n\nBetter luck next time, bucko.\nThe word was: {self.word}{Style.reset}\n")
             return True
         return False
 
@@ -139,7 +148,7 @@ def game_start():
         5: "CULINARY_DELIGHTS"
     }
 
-    print("\nLET'S PLAY HANGMAN!")
+    print(f"\n{Back.blue}LET'S PLAY HANGMAN!{Style.reset}")
     print("\nCATEGORIES:\n")
     for num, category in categories.items():
         print(f"{num}. {category}")
@@ -149,7 +158,7 @@ def game_start():
 
     if selected_category:
         clear_terminal()
-        print(f"You've selected the {category} category!\n")
+        print(f"You've selected the {selected_category} category!\n")
         word = get_random_word(selected_category)
         game = Hangman(word)
 
@@ -166,7 +175,6 @@ if __name__ == "__main__":
 
 # Current issues:
 # Need to come up with an error message if anything but letters entered for letter guess/ if several letters entered
-# Currently not accessing from the correct file when a category selected - "culinary_delights" selected every time
 # Bash script not running when game initialised
 # Need to write reset function that allows user to play again
 
