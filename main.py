@@ -161,6 +161,9 @@ def get_random_word(category):
     except FileNotFoundError:
         print(f"\n{Fore.RED}File '{filename}' not found.{Style.RESET}")
         return None
+    except IOError as e:
+        print(f"\n{Fore.RED}Error reading file: {e}{Style.RESET}")
+        return None
 
 
 # Main menu to display first
@@ -219,11 +222,11 @@ def game_help():
 # Game display - to display when user selects "play"
 def game_start():
     categories = {
-        1: f"{Fore.BLUE_VIOLET}SPOOKY{Style.RESET}",
-        2: f"{Fore.BLUE_VIOLET}GEOGRAPHY{Style.RESET}",
-        3: f"{Fore.BLUE_VIOLET}VIDEO_GAMES{Style.RESET}",
-        4: f"{Fore.BLUE_VIOLET}MYTHOLOGY{Style.RESET}",
-        5: f"{Fore.BLUE_VIOLET}CULINARY_DELIGHTS{Style.RESET}"
+        1: "SPOOKY",
+        2: "GEOGRAPHY",
+        3: "VIDEO_GAMES",
+        4: "MYTHOLOGY",
+        5: "CULINARY_DELIGHTS"
     }
 
     print(f"\n{Back.BLUE_VIOLET}CATEGORIES:{Style.RESET}\n")
@@ -236,8 +239,12 @@ def game_start():
             selected_category = categories.get(category_choice)
 
             if selected_category:
+                clear_terminal()
                 print(f"You've selected the {Fore.MAGENTA}{selected_category}{Style.RESET} category!\n")
                 word = get_random_word(selected_category)
+                if word is None:
+                    print(f"\n{Fore.RED}Failed to retrieve word. Please try again.{Style.RESET}")
+                    continue
                 game = Hangman(word)
 
                 while not game.is_game_over():
@@ -273,7 +280,7 @@ def reset():
             else:
                 print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
         except Exception as e:
-            print("An error has occurred: ", e)
+            print(f"\n{Fore.RED}Error: {e}{Style.RESET}")
 
 
 if __name__ == "__main__":
