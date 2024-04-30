@@ -101,21 +101,26 @@ class Hangman:
     def guess(self, letter):
         letter = letter.upper()
         if letter in self.guessed_letters:
+            clear_terminal()
             print(f"\n{Fore.RED}You've already guessed that letter!{Style.RESET}")
             return
 
         self.guessed_letters.add(letter)
 
         if letter in self.word:
+            clear_terminal()
             print(f"\n{Fore.GREEN}CORRECT!{Style.RESET}")
             for i, char in enumerate(self.word):
                 if char == letter:
                     self.current_progress[i] = letter
         elif not letter.isalpha():
+            clear_terminal()
             print(f"\n{Fore.RED}That's not a letter! Try again!{Style.RESET}")
         elif len(letter) > 1:
+            clear_terminal()
             print(f"\n{Fore.RED}One guess at a time please! Try again!{Style.RESET}")
         else:
+            clear_terminal()
             print(f"{Fore.RED}INCORRECT!{Style.RESET}")
             self.guesses_left -= 1
             self.hangman_stage += 1
@@ -159,7 +164,9 @@ def get_random_word(category):
 
 # Main menu to display first
 def main_menu():
+    clear_terminal()
     print(f"\n{Back.BLUE_VIOLET}LET'S PLAY HANGMAN!{Style.RESET}\n")
+    print("=================================\n")
     print(f"{Fore.BLUE_VIOLET}Enter '1' to play game{Style.RESET}")
     print(f"{Fore.BLUE_VIOLET}Enter '2' for game instructions{Style.RESET}")
     print(f"{Fore.BLUE_VIOLET}Enter '3' to view high scores{Style.RESET}")
@@ -223,7 +230,7 @@ def game_start():
         5: "CULINARY_DELIGHTS"
     }
 
-    print("\nCATEGORIES:\n")
+    print(f"\n{Back.BLUE_VIOLET}CATEGORIES:{Style.RESET}\n")
     for num, category in categories.items():
         print(f"{num}. {category}")
     
@@ -252,6 +259,7 @@ def game_start():
                 print(f"\n{Fore.RED}Invalid category choice. Please select a valid category.{Style.RESET}")
         except ValueError:
             print(f"\n{Fore.RED}Invalid category choice. Please select a valid category.{Style.RESET}")
+            
 
 
 # Asks the player if they want to play again & resets game
