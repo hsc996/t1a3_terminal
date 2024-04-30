@@ -3,13 +3,14 @@
 # 2. ./run.sh
 
 # System packages
+import os
 import random
 
 # External packages
 from colored import Fore, Back, Style # type:ignore
 
-# Import custom functions
-from generic_game_funcitions import high_score, clear_terminal
+# Internal packages
+from functions import clear_terminal, exit_game
 
 
 HANGMAN = [
@@ -169,28 +170,23 @@ def main_menu():
     print("=================================\n")
     print(f"{Fore.BLUE_VIOLET}Enter '1' to play game{Style.RESET}")
     print(f"{Fore.BLUE_VIOLET}Enter '2' for game instructions{Style.RESET}")
-    print(f"{Fore.BLUE_VIOLET}Enter '3' to view high scores{Style.RESET}")
-    print(f"{Fore.BLUE_VIOLET}Enter '4' to exit game{Style.RESET}")
+    print(f"{Fore.BLUE_VIOLET}Enter '3' to exit game{Style.RESET}")
     
-    menu_choice = input("\nSELECT AN OPTION: ")
+    while True:
+        menu_choice = input("\nSELECT AN OPTION: ")
 
-    valid_choices = ["1", "2", "3", "4"]
+        if menu_choice == "1":
+            clear_terminal()
+            game_start()
+        elif menu_choice == "2":
+            clear_terminal()
+            game_help()
+        elif menu_choice == "3":
+            clear_terminal()
+            exit_game()
+        else:
+            print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
 
-    if menu_choice not in valid_choices:
-        print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
-    elif menu_choice == "1":
-        clear_terminal()
-        game_start()
-    elif menu_choice == "2":
-        clear_terminal()
-        game_help()
-    elif menu_choice == "3":
-        clear_terminal()
-        high_score()
-    elif menu_choice == "4":
-        clear_terminal()
-        print("\nSEEYA NEXT TIME!\n")
-        exit()
 
 # Game instructions
 def game_help():
@@ -223,11 +219,11 @@ def game_help():
 # Game display - to display when user selects "play"
 def game_start():
     categories = {
-        1: "SPOOKY",
-        2: "GEOGRAPHY",
-        3: "VIDEO_GAMES",
-        4: "MYTHOLOGY",
-        5: "CULINARY_DELIGHTS"
+        1: f"{Fore.BLUE_VIOLET}SPOOKY{Style.RESET}",
+        2: f"{Fore.BLUE_VIOLET}GEOGRAPHY{Style.RESET}",
+        3: f"{Fore.BLUE_VIOLET}VIDEO_GAMES{Style.RESET}",
+        4: f"{Fore.BLUE_VIOLET}MYTHOLOGY{Style.RESET}",
+        5: f"{Fore.BLUE_VIOLET}CULINARY_DELIGHTS{Style.RESET}"
     }
 
     print(f"\n{Back.BLUE_VIOLET}CATEGORIES:{Style.RESET}\n")
@@ -240,7 +236,6 @@ def game_start():
             selected_category = categories.get(category_choice)
 
             if selected_category:
-                clear_terminal()
                 print(f"You've selected the {Fore.MAGENTA}{selected_category}{Style.RESET} category!\n")
                 word = get_random_word(selected_category)
                 game = Hangman(word)
@@ -251,6 +246,7 @@ def game_start():
                     guess = input("Guess a letter: ")
 
                     if guess.strip() == "":
+                        clear_terminal()
                         print(f"\n{Fore.RED}Invalid guess! Try again!{Style.RESET}")
                     else:
                         game.guess(guess)
@@ -260,7 +256,6 @@ def game_start():
         except ValueError:
             print(f"\n{Fore.RED}Invalid category choice. Please select a valid category.{Style.RESET}")
             
-
 
 # Asks the player if they want to play again & resets game
 def reset():
@@ -279,7 +274,6 @@ def reset():
                 print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
         except Exception as e:
             print("An error has occurred: ", e)
-
 
 
 if __name__ == "__main__":
