@@ -160,10 +160,10 @@ def get_random_word(category):
 # Main menu to display first
 def main_menu():
     print(f"\n{Back.BLUE_VIOLET}LET'S PLAY HANGMAN!{Style.RESET}\n")
-    print("Enter 1 to play game")
-    print("Enter 2 for game instructions")
-    print("Enter 3 to view high scores")
-    print("Enter 4 to exit game")
+    print(f"{Fore.BLUE_VIOLET}Enter '1' to play game{Style.RESET}")
+    print(f"{Fore.BLUE_VIOLET}Enter '2' for game instructions{Style.RESET}")
+    print(f"{Fore.BLUE_VIOLET}Enter '3' to view high scores{Style.RESET}")
+    print(f"{Fore.BLUE_VIOLET}Enter '4' to exit game{Style.RESET}")
     
     menu_choice = input("\nSELECT AN OPTION: ")
 
@@ -257,19 +257,21 @@ def game_start():
 # Asks the player if they want to play again & resets game
 def reset():
     while True:
-        reset = input("Play again?\n\nY/N: ")
-        play_again = reset.upper()
-        if play_again == "Y":
-            clear_terminal()
-            game_start()
-        elif play_again == "N":
-            clear_terminal()
-            print("Thanks for playing!\n\nSEEYA NEXT TIME\n")
-            break
-        else:
-            print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
+        try:
+            reset = input("Play again?\n\nY/N: ")
+            play_again = reset.upper()
+            if play_again == "Y":
+                clear_terminal()
+                game_start()
+            elif play_again == "N":
+                clear_terminal()
+                print("Thanks for playing!\n\nSEEYA NEXT TIME\n")
+                exit()
+            else:
+                print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
+        except Exception as e:
+            print("An error has occurred: ", e)
 
-        exit()
 
 
 if __name__ == "__main__":
