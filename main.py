@@ -10,6 +10,7 @@ import os
 from colored import Fore, Back, Style # type:ignore
 
 # Import custom functions
+from generic_game_funcitions import game_help, high_score
 
 
 def clear_terminal():
@@ -114,8 +115,10 @@ class Hangman:
             for i, char in enumerate(self.word):
                 if char == letter:
                     self.current_progress[i] = letter
-        elif not letter.isalpha() or len(letter) > 1:
-            print(f"\n{Fore.RED}Invalid guess! Try again!{Style.RESET}")
+        elif not letter.isalpha():
+            print(f"\n{Fore.RED}That's not a letter! Try again!{Style.RESET}")
+        elif len(letter) > 1:
+            print(f"\n{Fore.RED}One guess at a time please! Try again!{Style.RESET}")
         else:
             print(f"{Fore.RED}INCORRECT!{Style.RESET}")
             self.guesses_left -= 1
@@ -163,7 +166,7 @@ def main_menu():
     
     menu_choice = input("\nSELECT AN OPTION: ")
 
-    valid_choices = ["1", "2", "3"]
+    valid_choices = ["1", "2", "3", "4"]
 
     if menu_choice not in valid_choices:
         print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
@@ -175,18 +178,13 @@ def main_menu():
         game_help()
     elif menu_choice == "3":
         clear_terminal()
+        high_score()
+    elif menu_choice == "4":
+        clear_terminal()
         print("\nSEEYA NEXT TIME!\n")
         exit()
 
-
-def game_help():
-    print("HOW TO PLAY HANGMAN\n\n")
-    print("Step 1: Select a category from which you would like your hidden word to be selected")
-    print("Step 2: The hidden word you are presented will be represented by underscores. Each underscore will represent a letter. The player ")
-
         
-
-
 
 # Main game function
 def game_start():
@@ -228,7 +226,6 @@ def game_start():
         except ValueError:
             print(f"\n{Fore.RED}Invalid input! Please enter a number.{Style.RESET}")
 
-
 # Asks the player if they want to play again & resets game
 def reset():
     while True:
@@ -245,6 +242,7 @@ def reset():
             print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
 
         exit()
+
 
 if __name__ == "__main__":
     main_menu()
