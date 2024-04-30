@@ -148,9 +148,13 @@ class Hangman:
 # Function to get a random word from a list
 def get_random_word(category):
     filename = f"{category}.txt"
-    with open(filename, 'r') as file:
-        word_list = [line.strip() for line in file]
-    return random.choice(word_list)
+    try:
+        with open(filename, 'r') as file:
+            word_list = [line.strip() for line in file]
+        return random.choice(word_list)
+    except FileNotFoundError:
+        print(f"\n{Fore.RED}File '{filename}' not found.{Style.RESET}")
+        return None
 
 
 # Main menu to display first
@@ -192,19 +196,21 @@ def game_help():
     print("\nShould the player correct all of the letters correctly before the hangman dies, they will WIN.\n")
 
     while True:
-        play_game = input("Would you like to play?\n\nY/N: ")
-        play = play_game.upper()
-        if play == "Y":
-            clear_terminal()
-            game_start()
-        elif play == "N":
-            clear_terminal()
-            print("Thanks for playing!\n\nSEEYA NEXT TIME\n")
-            break
-        else:
+        try:
+            play_game = input("Would you like to play?\n\nY/N: ")
+            play = play_game.upper()
+            if play == "Y":
+                clear_terminal()
+                game_start()
+            elif play == "N":
+                clear_terminal()
+                print("Thanks for playing!\n\nSEEYA NEXT TIME\n")
+                exit()
+            else:
+                raise ValueError
+        except ValueError:
             print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
 
-        exit()
 
 
 # Game display - to display when user selects "play"
