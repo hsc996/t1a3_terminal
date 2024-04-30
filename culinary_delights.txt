@@ -1,7 +1,7 @@
 gnocchi
 kimchi
 pho
-guacamole
+gyro
 empanada
 gazpacho
 tiramisu
@@ -9,3 +9,7 @@ carpaccio
 mochi
 ratatouille
 baklava
+minestrone
+calzone
+poutine
+bibimbap

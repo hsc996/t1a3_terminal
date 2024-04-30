@@ -4,17 +4,13 @@
 
 # System packages
 import random
-import os
 
 # External packages
 from colored import Fore, Back, Style # type:ignore
 
 # Import custom functions
-from generic_game_funcitions import game_help, high_score
+from generic_game_funcitions import high_score, clear_terminal
 
-
-def clear_terminal():
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 HANGMAN = [
     '''
@@ -135,15 +131,15 @@ class Hangman:
         if '_' not in self.current_progress:
             clear_terminal()
             print("*************************************")
-            print(f"{Fore.RED}{Back.GREEN}\n!!!  YOU WON  !!!\n\nCongratulations!\n{Style.RESET}")
+            print(f"{Fore.WHITE}{Back.GREEN}\n!!!  YOU WON  !!!\n\nCongratulations!\n{Style.RESET}")
             print("*************************************\n")
             reset()
             return True
         elif self.guesses_left == 0:
             clear_terminal()
-            print(f"{Fore.GREEN}{Back.RED}!!!  GAME OVER  !!!{Style.RESET}\n")
+            print(f"{Fore.WHITE}{Back.RED}!!!  GAME OVER  !!!{Style.RESET}\n")
             print(HANGMAN[7])
-            print(f"{Fore.GREEN}{Back.RED}\nBetter luck next time, bucko.\nThe correct word was: {self.word}{Style.RESET}\n")
+            print(f"{Fore.WHITE}{Back.RED}\nBetter luck next time, bucko.\nThe correct word was: {self.word}{Style.RESET}\n")
             reset()
             return True
         return False
@@ -157,12 +153,13 @@ def get_random_word(category):
     return random.choice(word_list)
 
 
-
+# Main menu to display first
 def main_menu():
-    print(f"\n{Back.BLUE}LET'S PLAY HANGMAN!{Style.RESET}\n")
+    print(f"\n{Back.BLUE_VIOLET}LET'S PLAY HANGMAN!{Style.RESET}\n")
     print("Enter 1 to play game")
     print("Enter 2 for game instructions")
-    print("Enter 3 to exit game")
+    print("Enter 3 to view high scores")
+    print("Enter 4 to exit game")
     
     menu_choice = input("\nSELECT AN OPTION: ")
 
@@ -184,9 +181,33 @@ def main_menu():
         print("\nSEEYA NEXT TIME!\n")
         exit()
 
-        
+# Game instructions
+def game_help():
+    print("HOW TO PLAY HANGMAN\n\n")
+    print("Select a category from which you would like your hidden word to be selected")
+    print("\nThe hidden word you are presented will be represented by underscores. Each underscore will represent a letter.\nThe player will receive 7 guesses to guess each letter individually.")
+    print("\nEach correct letter guessed will replace the corresponding underscore, allowing the player to see where this\nletter resides in relation to the other letters within the hidden word")
+    print("\nHOWEVER, if the player guesses incorrectly, they will see the hangman drawing progress to the next stage and lose on of their lives")
+    print("\nShould the player lose all of their lives, they will have killed the hangman and trigger GAME OVER.")
+    print("\nShould the player correct all of the letters correctly before the hangman dies, they will WIN.\n")
 
-# Main game function
+    while True:
+        play_game = input("Would you like to play?\n\nY/N: ")
+        play = play_game.upper()
+        if play == "Y":
+            clear_terminal()
+            game_start()
+        elif play == "N":
+            clear_terminal()
+            print("Thanks for playing!\n\nSEEYA NEXT TIME\n")
+            break
+        else:
+            print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
+
+        exit()
+
+
+# Game display - to display when user selects "play"
 def game_start():
     categories = {
         1: "SPOOKY",
@@ -224,7 +245,8 @@ def game_start():
             else:
                 print(f"\n{Fore.RED}Invalid category choice. Please select a valid category.{Style.RESET}")
         except ValueError:
-            print(f"\n{Fore.RED}Invalid input! Please enter a number.{Style.RESET}")
+            print(f"\n{Fore.RED}Invalid category choice. Please select a valid category.{Style.RESET}")
+
 
 # Asks the player if they want to play again & resets game
 def reset():
@@ -247,9 +269,10 @@ def reset():
 if __name__ == "__main__":
     main_menu()
 
+
+
 # Current issues:
 # {Fore.white} not working???
-# Add option to exit program
 
 
 

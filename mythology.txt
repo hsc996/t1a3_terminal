@@ -8,3 +8,8 @@ poseidon
 medusa
 hercules
 persephone
+cyclops
+centaur
+nymph
+aphrodite
+siren

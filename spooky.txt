@@ -5,6 +5,11 @@ cobwebs
 vampire
 creepy
 ghastly
-banshee
+supernatural
 spirits
 goblins
+ghoul
+werewolf
+zombie
+skeleton
+moonlight
