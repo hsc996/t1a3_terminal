@@ -2,17 +2,17 @@
 # 1. chmod +x run.sh
 # 2. ./run.sh
 
-# System packages
+# Standard library imports
 import os
 import random
 
-# External packages
+# Related third-party imports
 from colored import Fore, Back, Style # type:ignore
 
-# Internal packages
+# Local application/library specific
 from functions import clear_terminal, exit_game
 
-
+# Hangman ASCII art: representing different stages of the game
 HANGMAN = [
     '''
   +---------+
@@ -89,7 +89,7 @@ HANGMAN = [
 '''
 ]
 
-
+# Class representing the Hangman game
 class Hangman:
     def __init__(self, word):
         self.word = word.upper()
@@ -98,7 +98,7 @@ class Hangman:
         self.current_progress = ['_' if letter.isalpha() else letter for letter in self.word]
         self.hangman_stage = 0
 
-
+    # Method to make a guess
     def guess(self, letter):
         letter = letter.upper()
         if letter in self.guessed_letters:
@@ -126,13 +126,13 @@ class Hangman:
             self.guesses_left -= 1
             self.hangman_stage += 1
 
-# Tracking letters guessed and displaying them on screen
+# Method to display the current progress of game
     def display_progress(self):
         print(' '.join(self.current_progress))
         print("\nLetters guessed:", ', '.join(sorted(self.guessed_letters))) 
         print(HANGMAN[self.hangman_stage])
 
-# GAME OVER - Function to indicate whether player has won or lost game
+# Method to check whether user has lost or won game
     def is_game_over(self):
         if '_' not in self.current_progress:
             clear_terminal()
@@ -145,7 +145,8 @@ class Hangman:
             clear_terminal()
             print(f"{Fore.WHITE}{Back.RED}!!!  GAME OVER  !!!{Style.RESET}\n")
             print(HANGMAN[7])
-            print(f"{Fore.WHITE}{Back.RED}\nBetter luck next time, bucko.\nThe correct word was: {self.word}{Style.RESET}\n")
+            print(f"{Fore.WHITE}{Back.RED}\nBetter luck next time, bucko.{Style.RESET}")
+            print(f"{Fore.WHITE}{Back.RED}\nThe correct word was: {self.word}{Style.RESET}\n")
             reset()
             return True
         return False
@@ -166,7 +167,7 @@ def get_random_word(category):
         return None
 
 
-# Main menu to display first
+# Main menu function
 def main_menu():
     clear_terminal()
     print(f"\n{Back.BLUE_VIOLET}LET'S PLAY HANGMAN!{Style.RESET}\n")
@@ -219,14 +220,14 @@ def game_help():
 
 
 
-# Game display - to display when user selects "play"
+# Function to start the game
 def game_start():
     categories = {
         1: "SPOOKY",
         2: "GEOGRAPHY",
         3: "VIDEO_GAMES",
         4: "MYTHOLOGY",
-        5: "CULINARY_DELIGHTS"
+        5: "CULINARY_DELIGHTS",
     }
 
     print(f"\n{Back.BLUE_VIOLET}CATEGORIES:{Style.RESET}\n")
@@ -248,7 +249,7 @@ def game_start():
                 game = Hangman(word)
 
                 while not game.is_game_over():
-                    print(f"\nYou have {game.guesses_left} guesses remaining\n")
+                    print(f"\nRemaining guesses: {game.guesses_left}\n")
                     game.display_progress()
                     guess = input("Guess a letter: ")
 
@@ -262,9 +263,8 @@ def game_start():
                 print(f"\n{Fore.RED}Invalid category choice. Please select a valid category.{Style.RESET}")
         except ValueError:
             print(f"\n{Fore.RED}Invalid category choice. Please select a valid category.{Style.RESET}")
-            
 
-# Asks the player if they want to play again & resets game
+# Function to reset game
 def reset():
     while True:
         try:
