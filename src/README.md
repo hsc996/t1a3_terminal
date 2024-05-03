@@ -61,7 +61,7 @@ The 'game_over' method is responsible for triggering a final "game over" display
 
 #### Code Logic -- Flow Chart Algorithm
 
-![flowchart](/src/assets/flowchart.png)
+![flowchart](/flowchart.png)
 
 
 

@@ -1,7 +1,3 @@
-# RUN IN TERMINAL TO COMMENCE GAME:
-# 1. chmod +x run.sh
-# 2. ./run.sh
-
 # Standard library imports
 import os
 import csv
