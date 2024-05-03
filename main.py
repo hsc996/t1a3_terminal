@@ -177,17 +177,18 @@ def display_scoreboard():
             try:
                 with open("scoreboard.csv", "r") as f:
                     scores = f.readlines()
-                    if scores:
+                    if len(scores) > 1:
+                        
                         print(f"\n{Fore.CYAN}       ~~ SCOREBOARD ~~\n{Style.RESET}")
                         # Create a PrettyTable object with the column names
                         table = PrettyTable(["DATE", "SCORE"])
-                        # Add rows to the table from the CSV contents
                         for idx, score in enumerate(scores):
                             if idx == 0:  # Skip the first line (header)
                                 continue
-                            name, score = score.strip().split(',')
-                            table.add_row([name, score])
-                    # Print the table
+                            score_data = score.strip().split(',')
+                            if len(score_data) == 2:
+                                name, score = score.strip().split(',')
+                                table.add_row([name, score])
                         print(table)
                     else:
                         print(f"\n{Fore.RED}Scoreboard is empty. Start playing to track your score!{Style.RESET}")
@@ -198,6 +199,7 @@ def display_scoreboard():
                     elif response.lower() == 'q':
                         exit_game()
                     else:
+                        clear_terminal()
                         print(f"\n{Fore.RED}Invalid input. Please try again.{Style.RESET}")
                     
             except FileNotFoundError:
@@ -261,15 +263,9 @@ def game_help():
 
     while True:
         try:
-            play_game = input("Would you like to play?\n\nY/N: ")
-            play = play_game.upper()
-            if play == "Y":
-                clear_terminal()
-                game_start()
-            elif play == "N":
-                clear_terminal()
-                print("Thanks for playing!\n\nSEEYA NEXT TIME\n")
-                exit()
+            response = input(F"\n{Fore.GREEN}Press 'M' to return to the main menu{Style.RESET}")
+            if response.lower() == 'm':
+                main_menu()
             else:
                 raise ValueError
         except ValueError:
@@ -325,12 +321,14 @@ def game_start():
 def reset():
     while True:
         try:
-            reset = input("Play again?\n\nY/N: ")
-            play_again = reset.upper()
-            if play_again == "Y":
+            options = input("Enter 'P' to PLAY AGAIN\nEnter 'S' to VIEW SCOREBOARD\nEnter 'Q' to QUIT GAME")
+            reset = options.upper()
+            if reset == "P":
                 clear_terminal()
                 game_start()
-            elif play_again == "N":
+            elif reset == "S":
+                display_scoreboard()
+            elif reset == "Q":
                 clear_terminal()
                 print("Thanks for playing!\n\nSEEYA NEXT TIME\n")
                 exit()
@@ -348,6 +346,7 @@ if __name__ == "__main__":
 
 # Current issues:
 # {Fore.white} not working???
+# Ensure that the program doesn't break if csv file is empty (have it start at 0,0)
 
 
 
