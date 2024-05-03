@@ -4,14 +4,18 @@
 
 # Standard library imports
 import os
-import random
 import csv
+import random
+from datetime import datetime
+
 
 # Related third-party imports
 from colored import Fore, Back, Style # type:ignore
+from prettytable import PrettyTable # type:ignore
+from datetime import datetime
 
 # Local application/library specific
-from functions import clear_terminal, exit_game, load_scoreboard, update_scoreboard, display_scoreboard
+from functions import clear_terminal, exit_game
 
 # Hangman ASCII art: representing different stages of the game
 HANGMAN = [
@@ -140,6 +144,7 @@ class Hangman:
             print("*************************************")
             print(f"{Fore.WHITE}{Back.GREEN}\n!!!  YOU WON  !!!\n\nCongratulations!\n{Style.RESET}")
             print("*************************************\n")
+            add_to_scoreboard(True)
             reset()
             return True
         elif self.guesses_left == 0:
@@ -148,9 +153,57 @@ class Hangman:
             print(HANGMAN[7])
             print(f"{Fore.WHITE}{Back.RED}\nBetter luck next time, bucko.{Style.RESET}")
             print(f"{Fore.WHITE}{Back.RED}\nThe correct word was: {self.word}{Style.RESET}\n")
+            add_to_scoreboard(False)
             reset()
             return True
         return False
+    
+# Function to add game result to the scoreboard
+def add_to_scoreboard(won):
+    try:
+        with open("scoreboard.csv", "a") as f:
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            result = "WON" if won else "LOST"
+            f.write(f"{timestamp},{result}\n")
+    except IOError as e:
+        print(f"\n{Fore.RED}Error writing to scoreboard file: {e}{Style.RESET}")
+
+
+# Display scoreboard with dates recorded
+def display_scoreboard():
+        clear_terminal()
+
+        while True:
+            try:
+                with open("scoreboard.csv", "r") as f:
+                    scores = f.readlines()
+                    if scores:
+                        print(f"\n{Fore.CYAN}       ~~ SCOREBOARD ~~\n{Style.RESET}")
+                        # Create a PrettyTable object with the column names
+                        table = PrettyTable(["DATE", "SCORE"])
+                        # Add rows to the table from the CSV contents
+                        for idx, score in enumerate(scores):
+                            if idx == 0:  # Skip the first line (header)
+                                continue
+                            name, score = score.strip().split(',')
+                            table.add_row([name, score])
+                    # Print the table
+                        print(table)
+                    else:
+                        print(f"\n{Fore.RED}Scoreboard is empty. Start playing to track your score!{Style.RESET}")
+
+                    response = input(F"\n{Fore.GREEN}Press 'M' to return to the main menu or 'Q' to quit the scoreboard: {Style.RESET}")
+                    if response.lower() == 'm':
+                        main_menu()
+                    elif response.lower() == 'q':
+                        exit_game()
+                    else:
+                        print(f"\n{Fore.RED}Invalid input. Please try again.{Style.RESET}")
+                    
+            except FileNotFoundError:
+                print(f"\n{Fore.RED}Scoreboard file not found.{Style.RESET}")
+            except IOError as e:
+                print(f"\n{Fore.RED}Error reading scoreboard file: {e}{Style.RESET}")
     
 
 # Function to get a random word from a list
@@ -175,7 +228,8 @@ def main_menu():
     print("=================================\n")
     print(f"{Fore.BLUE_VIOLET}Enter [1] to START GAME{Style.RESET}")
     print(f"{Fore.BLUE_VIOLET}Enter [2] for GAME RULES{Style.RESET}")
-    print(f"{Fore.BLUE_VIOLET}Enter [3] to EXIT{Style.RESET}")
+    print(f"{Fore.BLUE_VIOLET}Enter [3] to DISPLAY SCOREBOARD{Style.RESET}")
+    print(f"{Fore.BLUE_VIOLET}Enter [4] to EXIT{Style.RESET}")
     
     while True:
         menu_choice = input("\nSELECT AN OPTION: ")
@@ -187,6 +241,8 @@ def main_menu():
             clear_terminal()
             game_help()
         elif menu_choice == "3":
+            display_scoreboard()
+        elif menu_choice == "4":
             clear_terminal()
             exit_game()
         else:

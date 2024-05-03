@@ -1,5 +1,4 @@
 import os
-import csv
 from colored import Fore, Back, Style # type:ignore
 
 

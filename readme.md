@@ -1,33 +1,33 @@
 ## T1A3 TERMINAL APPLICATION
 
-#### LINKS
+### LINKS
 Github repository: https://github.com/hsc996/t1a3_terminal
 
-#### STYLE GUIDE: PEP8
+### STYLE GUIDE: PEP8
 
-##### _Imports:_
+#### _Imports:_
 I've selected the PEP 8 style guide for python code, which I have adhered to throughout. According to the PEP8 styling guide, imports should be separated into 3 groups: standard library imports, related third party imports and local application imports. The style guide states that imports should be put "at the top of the file" and should be "on separate lines", making it easier to read and understand the dependencies of the script (Van Rossum et al., 2001). When viewing the code, one can see I have filed and labelled each import appropriately in accordance with these rules.
 
-##### _Comments:_
+#### _Comments:_
 I've used concise comments throughout to indicate the purpose of various classes, methods and functions. I've ensured they're all in complete sentences with the first word capitalised, as per the guildlines (Van Rossum et al., 2001). I've included these comments to enhance code readability and help other developers udnerstand the logic of the code.
 
- ##### _Whitespaces:_
+#### _Whitespaces:_
 The code has consistent whitespace around operators and after commas, making it easier to read and understand. Furthermore, each method in the Hangman class is separated by a single blank line, as recommended by PEP 8 (Van Rossum et al., 2001).
 
- ##### _Indentation:_
+#### _Indentation:_
 As outlined by the PEP 8 guidelines, I've ensured that my code follows the standard indentation style of using four spaces per level.
 
-##### _Variable names:_
+#### _Variable names:_
 Variable names are descriptive and follow the recommended naming conventions. For example, HANGMAN is in all caps, indicating it's a constant, and Hangman is in CamelCase, indicating it's a class name. 
 
-##### _Function and Method Names:_
+#### _Function and Method Names:_
 All function and method names are descriptive, ensuring their functionality is clear to whomever is reading the code. Each function and method name adhere to the snake_case naming convention, which is the preferred convention outlined within the PEP 8 styleguide (Van Rossum et al., 2001). For example, main_menu, game_help, and game_start.
 
-##### _String Formatting:_
+#### _String Formatting:_
 I've used string formatting consistently throughout the code. For example, print(f"{Fore.RED}You've already guessed that letter!{Style.RESET}"). By consistently formatting all of the error messages in red, and the "CORRECT!" messages in green, I have improved readilbility of the code as well as for the player.
 
 
-#### FEATURES
+### FEATURES
 
 
 1) MAIN MENU
@@ -53,23 +53,23 @@ The 'game_over' method is responsible for triggering a final "game over" display
 
 <-- Include logic behind exception handling here // do a once over to see whether the variable scope is addressed -->
 
-#### Implementation Plan
+### Implementation Plan
 
 
 
-#### Project Management
+### Project Management
 
 
 
-#### Help Documentation
+### Help Documentation
 
-##### _Considerations_
+#### _Considerations_
 
 This application will execute a function that clears the terminal upon launch. It is recommended to launch this application in a separate window if you want to avoid losing any important data you may have in your terminal.
 
 This applicaion has been designed and tested on a Macbook, however, should work on any system as long as Python 3 is installed.
 
-##### _Dependencies_
+#### _Dependencies_
 
 In order to run this application, you must have Python 3 installed.
 
@@ -77,7 +77,7 @@ Furthermore, this application has dependencies that have been included to run up
 
 colored==2.2.4
 
-##### _Installation_
+#### _Installation_
 
 If it is your first time using this application, you should run this command first:
 
