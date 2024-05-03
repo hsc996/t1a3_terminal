@@ -16,11 +16,5 @@ else
     exit 1
 fi
 
-# Installs Colored to virtual environment
-pip3 install colored
-
-# Installs terminaltables to virtual environment
-pip install terminaltables
-
-# Initialisation of main application
+# Run app
 python3 main.py

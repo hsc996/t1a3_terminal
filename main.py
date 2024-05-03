@@ -5,12 +5,13 @@
 # Standard library imports
 import os
 import random
+import csv
 
 # Related third-party imports
 from colored import Fore, Back, Style # type:ignore
 
 # Local application/library specific
-from functions import clear_terminal, exit_game
+from functions import clear_terminal, exit_game, load_scoreboard, update_scoreboard, display_scoreboard
 
 # Hangman ASCII art: representing different stages of the game
 HANGMAN = [
@@ -170,7 +171,7 @@ def get_random_word(category):
 # Main menu function
 def main_menu():
     clear_terminal()
-    print(f"\n{Back.BLUE_VIOLET}LET'S PLAY HANGMAN!{Style.RESET}\n")
+    print(f"\n{Back.BLUE_VIOLET}~~~ LET'S PLAY HANGMAN! ~~~{Style.RESET}\n")
     print("=================================\n")
     print(f"{Fore.BLUE_VIOLET}Enter [1] to START GAME{Style.RESET}")
     print(f"{Fore.BLUE_VIOLET}Enter [2] for GAME RULES{Style.RESET}")
@@ -236,7 +237,7 @@ def game_start():
     
     while True:
         try:
-            category_choice = int(input("\nEnter a number to select a category: "))
+            category_choice = int(input(f"\nEnter a {Fore.MAGENTA}number{Style.RESET} to select a category: "))
             selected_category = categories.get(category_choice)
 
             if selected_category:
