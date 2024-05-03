@@ -126,14 +126,14 @@ class Hangman:
             self.guesses_left -= 1
             self.hangman_stage += 1
 
-# Method to display the current progress of game
-    def display_progress(self):
+# Method to update the current progress of game
+    def update_progress(self):
         print(' '.join(self.current_progress))
         print("\nLetters guessed:", ', '.join(sorted(self.guessed_letters))) 
         print(HANGMAN[self.hangman_stage])
 
 # Method to check whether user has lost or won game
-    def is_game_over(self):
+    def game_over(self):
         if '_' not in self.current_progress:
             clear_terminal()
             print("*************************************")
@@ -143,7 +143,7 @@ class Hangman:
             return True
         elif self.guesses_left == 0:
             clear_terminal()
-            print(f"{Fore.WHITE}{Back.RED}!!!  GAME OVER  !!!{Style.RESET}\n")
+            print(f"{Fore.WHITE}{Back.RED}!!!  YOU LOSE  !!!{Style.RESET}\n")
             print(HANGMAN[7])
             print(f"{Fore.WHITE}{Back.RED}\nBetter luck next time, bucko.{Style.RESET}")
             print(f"{Fore.WHITE}{Back.RED}\nThe correct word was: {self.word}{Style.RESET}\n")
@@ -172,9 +172,9 @@ def main_menu():
     clear_terminal()
     print(f"\n{Back.BLUE_VIOLET}LET'S PLAY HANGMAN!{Style.RESET}\n")
     print("=================================\n")
-    print(f"{Fore.BLUE_VIOLET}Enter '1' to play game{Style.RESET}")
-    print(f"{Fore.BLUE_VIOLET}Enter '2' for game instructions{Style.RESET}")
-    print(f"{Fore.BLUE_VIOLET}Enter '3' to exit game{Style.RESET}")
+    print(f"{Fore.BLUE_VIOLET}Enter [1] to START GAME{Style.RESET}")
+    print(f"{Fore.BLUE_VIOLET}Enter [2] for GAME RULES{Style.RESET}")
+    print(f"{Fore.BLUE_VIOLET}Enter [3] to EXIT{Style.RESET}")
     
     while True:
         menu_choice = input("\nSELECT AN OPTION: ")
@@ -248,9 +248,9 @@ def game_start():
                     continue
                 game = Hangman(word)
 
-                while not game.is_game_over():
+                while not game.game_over():
                     print(f"\nRemaining guesses: {game.guesses_left}\n")
-                    game.display_progress()
+                    game.update_progress()
                     guess = input("Guess a letter: ")
 
                     if guess.strip() == "":
@@ -278,6 +278,7 @@ def reset():
                 print("Thanks for playing!\n\nSEEYA NEXT TIME\n")
                 exit()
             else:
+                clear_terminal()
                 print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
         except Exception as e:
             print(f"\n{Fore.RED}Error: {e}{Style.RESET}")

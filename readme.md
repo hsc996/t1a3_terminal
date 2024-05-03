@@ -29,15 +29,13 @@ I've used string formatting consistently throughout the code. For example, print
 
 #### FEATURES
 
-1)
 
-
-2) MAIN MENU
+1) MAIN MENU
 
 As the application is run, the main_menu function is called, and the user is presented with a menu requesting them to 1) start game, 2) access help/instructions or 3) exit game. I've chosen to display this inital welcome message and menu script via a series of print("") statements. In order to ensure that the menu will remain on screen unless the user chooses to exit by selecting "3", I've utilised a while loop to serve as the primary control structure, as it will run infinitely as long as its condition remains True. The user input is prompted and collected via an input function, which I've stored in the menu_choice variable. The input is then evaluated in a series of if-elif-else statements to determine the appropriate action based on the chosen option. The if/elif options point to 3 valid options for the user to choose, each calling the appropriate corresponding function to direct them to their option. Lastly, I've included the "else" statement to account for errors, so that rather than breaking the code by selecting an invalid option, as error message is displayed that prompts the user to try again.
 
 
-3) WORD SELECTION FROM CATEGORIES
+2) WORD SELECTION FROM CATEGORIES
 
 Once the user has selected to start the game, the 'game_start' function is called and a list of categories will be displayed: the categories I've selected are SPOOKY, GEOGRAPHY, VIDEO GAMES, MYTHOLOGY and CULINARY DELIGHTS. The function begins by defining a dictionary named categories, where the keys are numerical indices and the values are strings representing different categories (e.g., "SPOOKY", "GEOGRAPHY"). The function then iterates over the categories dictionary using a for loop, displaying each category along with its corresponding index number. I've printed both the categories and the header in coloured formatting for aesthetic purposes.
 
@@ -47,7 +45,25 @@ Once a valid category is selected, the function clears the terminal screen, prin
 
 Within the game loop ('while not game.is_game_over()'), the player is prompted to guess a letter. The guessed letter is validated, and if it's valid, the game's guess method is called to process the guess. The game loop continues until the game is over (either the player wins or loses). If the game loop exits (either by winning, losing, or encountering an error), the outer while loop (while True) breaks, and the function execution ends.
 
-<-- Incude logic behind exception handling here // do a once over to see whether the variable scope is addressed -->
+
+3) WIN/LOSE TRIGGER
+
+The 'game_over' method is responsible for triggering a final "game over" display at the end of the game, depending on the outcome. If the player corrects all the letters correctly within the frame of their allotted guesses, it will trigger a "YOU WON" display and if the player is unsuccessful, it will trigger a "YOU LOSE" display. This function is designed to work by calling to the Hangman class: the 'guess' method takes the letter as input and converts the letter to uppercase for consistency. If there are no underscores left in self.current_progress, it means the player has guessed all the letters correctly and won the game. If self.guesses_left becomes zero, it means the player has used all their chances and lost the game. In either case, the method prints a message informing the player of the outcome and resets the game. The game clears the terminal screen to keep the interface clean and readable after each guess. ASCII art representing the Hangman is displayed to provide a visual representation of the player's progress and the consequences of incorrect guesses.
+
+
+<-- Include logic behind exception handling here // do a once over to see whether the variable scope is addressed -->
+
+#### Implementation Plan
+
+
+
+#### Project Management
+
+
+
+#### Help Documentation
+
+
 
 
 
