@@ -175,21 +175,24 @@ def display_scoreboard():
             try:
                 with open("scoreboard.csv", "r") as f:
                     scores = f.readlines()
-                    if len(scores) > 1:
-                        
+                    if len(scores) == 1:
+                        print(f"\n{Fore.RED}Scoreboard is empty. Start playing to track your score!{Style.RESET}")
+                    else:
                         print(f"\n{Fore.CYAN}       ~~ SCOREBOARD ~~\n{Style.RESET}")
-                        # Create a PrettyTable object with the column names
                         table = PrettyTable(["DATE", "SCORE"])
                         for idx, score in enumerate(scores):
-                            if idx == 0:  # Skip the first line (header)
+                            if idx == 0:  # Skip the header row
                                 continue
                             score_data = score.strip().split(',')
                             if len(score_data) == 2:
-                                name, score = score.strip().split(',')
-                                table.add_row([name, score])
-                        print(table)
-                    else:
-                        print(f"\n{Fore.RED}Scoreboard is empty. Start playing to track your score!{Style.RESET}")
+                                name, score_value = score_data
+                                table.add_row([name, score_value])
+                        
+                        if len(table._rows) == 0:  # Check if table is empty after populating it
+                            print(f"\n{Fore.RED}Scoreboard is empty. Start playing to track your score!{Style.RESET}")
+                        else:
+                            print(table)
+
 
                     response = input(F"\n{Fore.GREEN}Press 'M' to return to the main menu or 'Q' to quit the scoreboard: {Style.RESET}")
                     if response.lower() == 'm':
