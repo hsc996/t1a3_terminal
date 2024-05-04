@@ -1,5 +1,6 @@
 # T1A3 TERMINAL APPLICATION - Hangman Game
 
+
 ## LINKS
 Github repository: https://github.com/hsc996/t1a3_terminal
 Trello board: <--LINK-->
@@ -67,7 +68,7 @@ In order for the player to be able to view their scoreboard, I've included 2 pat
 
 ![flowchart](/src/assets/flowchart.jpg)
 
-The flowchart above depicts an algorithm explaining the logic of the code. The "start" and "end" points are represented by the traditional oval shapes and have been colour coded for clarity. As there are a junctions within the code that depend on user input, I've use the paralellograms to incidicate the input/output points and colour coded them in purple. The burgundy rectangles represent a "process", while the teal diamond represent decision points in the code. There are some points in the code that are both decision points and require user input, in which I've decided to keep them as parallelograms.
+The flowchart above depicts an algorithm explaining the logic of the code. The "start" and "end" points are represented by the traditional oval shapes and have been colour coded for clarity. As there are a junctions within the code that depend on user input, I've use the paralellograms to incidicate the input/output points and colour coded them in purple. The burgundy rectangles represent a "process", while the teal diamond represent decision points in the code. There are some points in the code that are both decision points and require user input, which I've decided to keep as parallelograms to reduce confusion.
 
 
 
@@ -85,7 +86,6 @@ The flowchart above depicts an algorithm explaining the logic of the code. The "
 
 This application will execute a function that clears the terminal upon launch. It is recommended to launch this application in a separate window if you want to avoid losing any important data you may have in your terminal.
 
-This applicaion has been designed and tested on a Macbook, however, should work on any system as long as Python 3 is installed.
 
 #### _Dependencies_
 
@@ -102,19 +102,40 @@ These dependencies have been accounted for in the bash scripts, and will thus be
 
 #### _Installation_
 
-This application will run from the "src" directory. Please ensure you are in correct directory before attempting to install.
+Step 1: Open your terminal. It is advised to use the terminal on your device, rather than an integrated terminal via your code editor.
 
-If it is your first time using this application, you should run this command first:
+_Considerations_: This applicaion has been designed and tested on Linux system. If you are opening this appplication using a Windows device, you may need to install a [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/about) before launch.
 
-`chmod +x run.sh`
+Step 2: Clone the Github repository via SSH:
+```
+git clone git@github.com:hsc996/t1a3_terminal.git
+```
+or HTTP:
+```
+git clone https://github.com/hsc996/t1a3_terminal.git
+```
 
-Then, in order to run the app in your terminal, you must run command the `./run.sh`.
-If you've run this application before, `./run.sh` will be the only command required to run the application thereafter.
+Step 3: Navigate to the `src` directory:
+```
+cd src 
+```
+Step 4: If it is your first time using this application, use this command to execute permissions to the bash script:
+
+```
+chmod +x run.sh
+```
+_Note:_ If you've run this application before, you should be permitted to skip Step 4. However, do not skip this step if it is the first launch of this application on your device.
+
+Step 5: Execute the bash script:
+```
+./run.sh
+```
 
 
 
 ## REFERENCES
 
-Van Rossum, G., Warsaw, B. and Coghlan, A. (2001) PEP 8 – Style Guide for Python Code. Available at:
-https://peps.python.org/pep-0008/ (Accessed: 25 April 2024).
+Van Rossum, G., Warsaw, B. and Coghlan, A. (2001) PEP 8 – Style Guide for Python Code. Available at: https://peps.python.org/pep-0008/ (Accessed: 25 April 2024).
+
+https://learn.microsoft.com/en-us/windows/wsl/about
 
