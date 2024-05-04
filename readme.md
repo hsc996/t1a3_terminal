@@ -3,7 +3,8 @@
 
 ## LINKS
 Github repository: https://github.com/hsc996/t1a3_terminal
-Trello board: <--LINK-->
+Github Project board: https://github.com/users/hsc996/projects/3
+
 
 ## STYLE GUIDE: PEP8
 
@@ -60,7 +61,7 @@ The `game_over()` method is responsible for triggering a final "game over" displ
 
 I've added a scoreboard feature to track the wins and losses of the player, including a date and time log of the outcome. Although a scoreboard traditionally involves a record of the players name and a system tracking "high scores", I've decided to simplify the scoreboard as this appliation is a single-player game. In order to create this feature, I had to first design a function that tracks the wins and losses by added them to a csv file: The `add_to_scoreboard()` function achieves this by taking a single parameter "won", which is a boolean indicating whether the game has been won or not. Inside the `try:` block of this function, it opens the `scoreboard.csv` file in append mode (as indicated by the "a"). It then generates a timestamp using the `datetime.now().strftime("%Y-%m-%d %H:%M:%S")` to represent the current date and time in a specific format; this is a mechanism is made available by the importing the datetime Python package, which one can see in the imported packages at the top of the page. It them determines the game result ("WON or "LOST") based on the value of the 'won' parameter. It then writes the timestamp, result and a newline character into the csv file. One can see I've included exception handling in this function which catches any IOError that might occur during file operations and subsequently prints an error message, as opposed to breaking the program.
 
-In order for the player to be able to view their scoreboard, I've included 2 paths; the first path is in the `main_menu()` and the second path is presented at the end of a game. This can be seen in the flowchart algorithm provided below. I've created the display using the `display_scoreboard()` function. It first clears the terminal screen and enters a loop that will continue until the user decides to return to the main menu or quit the program. Within the loop, the `scoreboard.csv` file is opened in read mode (as indicated by "r"), and reads all lines from the file into the "scores" list. The if/else condition states that if the length of the "scores' list is greater than 1 (indicating there is at leader one entry in addition to the header), it prints a formatted scoreboard using the imported    `PrettyTable` library. If the scoreboard is empty, it prints a message informing the user. It then prompts the user for input, asking if they want to return to the main menu or quit. Depending on the user's input, it either calls the `main_menu()` function or `game_exit()` function. I've included exception handling to catch potential exceptions such as FileNotFoundError or IOError; generating an appropriate error message if they occur.
+In order for the player to be able to view their scoreboard, I've included 2 paths; the first path is in the `main_menu()` and the second path is presented at the end of a game. This can be seen in the flowchart algorithm provided below. I've created the display using the `display_scoreboard()` function. It first clears the terminal screen and enters a loop that will continue until the user decides to return to the main menu or quit the program. Within the loop, the `scoreboard.csv` file is opened in read mode (as indicated by "r"), and reads all lines from the file into the "scores" list. The if/else condition states that if the length of the "scores' list is greater than 1 (indicating there is at leader one entry in addition to the header), it prints a formatted scoreboard using the imported    `PrettyTable` library. If the scoreboard is empty, it prints a message informing the user. It then prompts the user for input, asking if they want to return to the main menu or quit. Depending on the user's input, it either calls the `main_menu()` function or `exit_game()` function. I've included exception handling to catch potential exceptions such as FileNotFoundError or IOError; generating an appropriate error message if they occur.
 
 
 ### Code Logic -- Flow Chart Algorithm
@@ -74,17 +75,46 @@ The flowchart above depicts an algorithm explaining the logic of the code. The "
 
 ## Implementation Plan
 
-- checklists
-- priorities
-- screenshots
+_Project Kanban_
+
+![kanban_board](/src/assets/project_kanban.png)
+
+_Roadmap_
+
+![roadmap](/src/assets/tasklist_roadmap.png)
 
 
-## Project Management
+I created an implementation plan using a Kanban board in Github Projects, which detailed a list of tasks in order of priority. I utilised the "roadmap" tab to create a visual display of my intended timeline by mapping the tasks in a priority list according to day. Although most major checklist items were added at the beginning of the planning process, there were also some "error handling" checklist items that were added as I encountered them. As each of these items were resolved, I marked them accordingly.
 
-- trello board
-- screeshots
+As one can see on my checklists, I began simply by choosing a style guide. I then created an algorithm flowchart in order to map out the code logic before commencing.
 
-## Help Documentation
+
+
+_Implementation of features_
+
+
+1) Categories menu
+
+ - Create a number of files, each containing words of different catgories
+ - Create a dictionary called categories containing various categories for the game
+ - Print the available categories to the user.
+ - Prompt the user to select a category by entering a corresponding number.
+ - Ensure that the user's input is a valid number corresponding to one of the categories
+ - Retrieve the selected category from the dictionary
+ - Inform the user about the selected category
+ - Retrieve a random word from the selected category.
+ - Initialize a Hangman game instance with the randomly selected word
+ - Continue the game loop until it's over.
+ - Within this loop:
+    - Display the number of remaining guesses to the user.
+    - Display the current progress of guessed letters and blanks.
+    - Ask the user to guess a letter
+    - Ensure that the input is a single letter. (exception handling)
+    - Update the game state based on the user's guess
+    - If the game is over, break the loop
+- Repeat the game or quit the program
+
+
 
 
 #### _Considerations_
@@ -101,9 +131,12 @@ Below is a list of dependencies required for the app to run as intended:
 ```
 colored==2.2.4
 prettytable==3.10.0
+pyfiglet==1.0.2
 ```
 
-These dependencies have been accounted for in the bash scripts, and will thus be included automatically upon launch.
+These dependencies are stored in the `requirements.txt` file. The bash scripts are reposible for generating a virtual enviroment for the application to run. These dependencies will be executed via the bash scripts to install in your virtual environment automatically upon launch.
+
+
 
 ## Installation
 

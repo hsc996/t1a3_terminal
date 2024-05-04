@@ -16,11 +16,6 @@ else
     exit 1
 fi
 
-# pretty table
-# python -m pip install -U prettytable
-
-# colored
-# pip install colored
 
 # Run app
 python3 main.py

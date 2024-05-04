@@ -252,7 +252,7 @@ def main_menu():
 
 # Game instructions
 def game_help():
-    print("HOW TO PLAY HANGMAN\n\n")
+    print(fig.renderText('HOW TO PLAY'))
     print("Select a category from which you would like your hidden word to be selected")
     print("\nThe hidden word you are presented will be represented by underscores. Each underscore will represent a letter.\nThe player will receive 7 guesses to guess each letter individually.")
     print("\nEach correct letter guessed will replace the corresponding underscore, allowing the player to see where this\nletter resides in relation to the other letters within the hidden word")
@@ -282,7 +282,6 @@ def game_start():
         5: "CULINARY_DELIGHTS",
     }
 
-    fig = Figlet(font='standard')
     print(fig.renderText('CATEGORIES'))
     for num, category in categories.items():
         print(f"{num}. {category}")
@@ -330,12 +329,11 @@ def reset():
                 display_scoreboard()
             elif reset == "Q":
                 clear_terminal()
-                print("Thanks for playing!\n\nSEEYA NEXT TIME\n")
-                exit()
+                exit_game()
             else:
                 clear_terminal()
                 print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
-        except Exception as e:
+        except (ValueError, Exception) as e:
             print(f"\n{Fore.RED}Error: {e}{Style.RESET}")
 
 
