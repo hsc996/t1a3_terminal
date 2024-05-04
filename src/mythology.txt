@@ -13,3 +13,8 @@ centaur
 nymph
 aphrodite
 siren
+pantheon
+sphinx
+griffin
+olympus
+minotaur

@@ -13,3 +13,8 @@ tokyo
 mississippi
 arkansas
 madagascar
+egypt
+seoul
+dubai
+shanghai
+rome

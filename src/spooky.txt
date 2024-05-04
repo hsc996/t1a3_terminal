@@ -13,3 +13,8 @@ werewolf
 zombie
 skeleton
 moonlight
+tombstone
+cauldron
+potion
+graveyard
+nightshade

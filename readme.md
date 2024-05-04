@@ -61,7 +61,9 @@ The 'game_over' method is responsible for triggering a final "game over" display
 
 #### Code Logic -- Flow Chart Algorithm
 
-![flowchart](/src/assets/flowchart.png)
+![flowchart](/assets/flowchart.png)
+
+The flowchart above depicts an algorithm explaining the logic of the code. The "start" and "end" points are represented by the traditional oval shapes and have been colour coded for clarity. As there are a junctions within the code that depend on user input, I've use the paralellograms to incidicate the input/output points and colour coded them in purple. The burgundy rectangles represent a "process", while the teal diamond represent decision points in the code. There are some points in the code that are both decision points and require user input, in which I've decided to keep them as parallelograms.
 
 
 
@@ -78,17 +80,25 @@ This applicaion has been designed and tested on a Macbook, however, should work 
 
 In order to run this application, you must have Python 3 installed.
 
-Furthermore, this application has dependencies that have been included to run upon launch:
+Below is a list of dependencies required for the app to run as intended:
 
 colored==2.2.4
+prettytable==3.10.0
+
+These dependencies have been accounted for in the bash scripts, and will thus be included automatically upon launch.
 
 #### _Installation_
+
+This application will run from the "src" directory. Please ensure you are in correct directory before attempting to install.
 
 If it is your first time using this application, you should run this command first:
 
 "chmod +x run.sh"
 
-Then, in order to run the app in your terminal, you must run command the "./run.sh"
+Then, in order to run the app in your terminal, you must run command the "./run.sh".
+If you've run this application before, "./run.sh" will be the only command required to run the application.
+
+
 
 
 

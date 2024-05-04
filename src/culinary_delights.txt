@@ -13,3 +13,8 @@ minestrone
 calzone
 poutine
 bibimbap
+spaghetti
+falafel
+borscht
+moussaka
+cheeseburger
