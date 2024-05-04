@@ -61,7 +61,7 @@ The 'game_over' method is responsible for triggering a final "game over" display
 
 #### Code Logic -- Flow Chart Algorithm
 
-![flowchart](/assets/flowchart.png)
+![flowchart](/assets/flowchart.jpg)
 
 The flowchart above depicts an algorithm explaining the logic of the code. The "start" and "end" points are represented by the traditional oval shapes and have been colour coded for clarity. As there are a junctions within the code that depend on user input, I've use the paralellograms to incidicate the input/output points and colour coded them in purple. The burgundy rectangles represent a "process", while the teal diamond represent decision points in the code. There are some points in the code that are both decision points and require user input, in which I've decided to keep them as parallelograms.
 
