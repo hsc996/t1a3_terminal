@@ -88,15 +88,13 @@ _Roadmap_
 
 I created an implementation plan using a Kanban board in Github Projects, which detailed a list of tasks in order of priority. I utilised the "roadmap" tab to create a visual display of my intended timeline by mapping the tasks in a priority list according to day. Although most major checklist items were added at the beginning of the planning process, there were also some "error handling" checklist items that were added as I encountered them. As each of these items were resolved, I marked them accordingly.
 
-As one can see on my checklists, I began simply by choosing a style guide. I then created an algorithm flowchart in order to map out the code logic before commencing.
-
-Furthermore, I began by using `import os` and creating a function to clear the terminal which I knew I would be implementing throughout to achieve the intended aethetic. I stored this in a separate `.py` file to be imported into the main file.
+As one can see on my checklists, I began simply by choosing a style guide. I then created an algorithm flowchart in order to map out the code logic before commencing. Furthermore, I began by using `import os` and creating a function to clear the terminal which I knew I would be implementing throughout to achieve the intended aethetic. I stored this in a separate `.py` file to be imported into the main file.
 
 
 
 _Implementation of features_
 
-
+##### ~ WEEK 1 PLAN ~
 
 **1) Welcome message + main menu**
 
@@ -141,6 +139,10 @@ _Implementation of features_
         - Add the result to the scoreboard as a loss.
         - Reset the game for a new round.
         - Return True to indicate the game is over.
+- Test the integration of both functions with other parts of the codebase.
+
+##### ~ WEEK 2 PLAN ~
+
 
 **4) Reset game function**
 
@@ -149,18 +151,35 @@ _Implementation of features_
  - Store user input prompt in a variable, printing navigation options
  - Implement functions to navigate to intended page given corresponding input
  - Implement a try-except block to catche any exceptions that may occur during user input or function calls. If an exception occurs, an error message is displayed, indicating the type of error.
+ - Test the integration of both functions with other parts of the codebase.
 
 **5) Exit game function**
 
  - This function is implemented when the user chooses to exit the game
  - Display 'goodbye' message
  - Implement `exit()` function
+ - Test the integration of both functions with other parts of the codebase.
 
 **6) Scoreboard**
 
-- 
+ - Create a file to store the wins/losses of the player
+ - Create a function that adds data to csv file
+ - Import datetime to incorporate timestamp when data appended to file
+ - Add exception handling to catch errors and print message instead
 
-7) Review design + text styling
+ - Create a function that will display the scoreboard data
+ - Import PrettyTable so data can display table format
+ - Open file data in read mode
+ - Provide a message if the scoreboard is empty and prompt the user to play a game
+ - Allow users to return to the main menu or quit the scoreboard. Handle user input accordingly.
+ - Add error handling to catch file not found or IO errors while reading the scoreboard file.
+ - Test the integration of both functions with other parts of the codebase.
+ - Test the functionality of adding game results and displaying the scoreboard.
+
+**7) Review design + text styling**
+
+ - Import `pyfiglet` and choose font
+ - Replace main headings with chosen font to headings
 
 
 #### _Considerations_
