@@ -22,7 +22,7 @@ As outlined by the PEP 8 guidelines, I've ensured that my code follows the stand
 Variable names are descriptive and follow the recommended naming conventions. For example, HANGMAN is in all caps, indicating it's a constant, and Hangman is in CamelCase, indicating it's a class name. 
 
 #### _Function and Method Names:_
-All function and method names are descriptive, ensuring their functionality is clear to whomever is reading the code. Each function and method name adhere to the snake_case naming convention, which is the preferred convention outlined within the PEP 8 styleguide (Van Rossum et al., 2001). For example, main_menu, game_help, and game_start.
+All function and method names are descriptive, ensuring their functionality is clear to whomever is reading the code. Each function and method name adhere to the snake_case naming convention, which is the preferred convention outlined within the PEP 8 styleguide (Van Rossum et al., 2001). For example, `main_menu()`, `game_help()`, and `game_start()`.
 
 #### _String Formatting:_
 I've used string formatting consistently throughout the code. For example, print(f"{Fore.RED}You've already guessed that letter!{Style.RESET}"). By consistently formatting all of the error messages in red, and the "CORRECT!" messages in green, I have improved readilbility of the code as well as for the player.
@@ -31,12 +31,13 @@ I've used string formatting consistently throughout the code. For example, print
 ## FEATURES
 
 
-_1) MAIN MENU_
+#### _1) MAIN MENU_
 
 As the application is run, the main_menu function is called, and the user is presented with a menu requesting them to [1] start game, [2] access help/instructions or [3] exit game. I've chosen to display this inital welcome message and menu script via a series of print("") statements. In order to ensure that the menu will remain on screen unless the user chooses to exit by selecting "3", I've utilised a while loop to serve as the primary control structure, as it will run infinitely as long as its condition remains True. The user input is prompted and collected via an input function, which I've stored in the menu_choice variable. The input is then evaluated in a series of if-elif-else statements to determine the appropriate action based on the chosen option. The if/elif options point to 3 valid options for the user to choose, each calling the appropriate corresponding function to direct them to their option. Lastly, I've included the "else" statement to account for errors, so that rather than breaking the code by selecting an invalid option, as error message is displayed that prompts the user to try again.
 
 
-_2) WORD SELECTION FROM CATEGORIES_
+
+#### _2) WORD SELECTION FROM CATEGORIES_
 
 Once the user has selected to start the game, the `game_start()` function is called and a list of categories will be displayed: the categories I've selected are SPOOKY, GEOGRAPHY, VIDEO GAMES, MYTHOLOGY and CULINARY DELIGHTS. The function begins by defining a dictionary named categories, where the keys are numerical indices and the values are strings representing different categories (e.g., "SPOOKY", "GEOGRAPHY"). The function then iterates over the categories dictionary using a for loop, displaying each category along with its corresponding index number. I've printed both the categories and the header in coloured formatting for aesthetic purposes.
 
@@ -47,26 +48,28 @@ Once a valid category is selected, the function clears the terminal screen, prin
 Within the game loop (`while not game.is_game_over()`), the player is prompted to guess a letter. The guessed letter is validated, and if it's valid, the game's guess method is called to process the guess. The game loop continues until the game is over (either the player wins or loses). If the game loop exits (either by winning, losing, or encountering an error), the outer while loop (while True) breaks, and the function execution ends.
 
 
-_3) WIN/LOSE TRIGGER_
+
+#### _3) WIN/LOSE TRIGGER_
 
 The `game_over()` method is responsible for triggering a final "game over" display at the end of the game, depending on the outcome. If the player corrects all the letters correctly within the frame of their allotted guesses, it will trigger a "YOU WON" display and if the player is unsuccessful, it will trigger a "YOU LOSE" display. This function is designed to work by calling to the Hangman class: the 'guess' method takes the letter as input and converts the letter to uppercase for consistency. If there are no underscores left in self.`current_progress()`, it means the player has guessed all the letters correctly and won the game. If `self.guesses_left` becomes zero, it means the player has used all their chances and lost the game. In either case, the method prints a message informing the player of the outcome and resets the game. The game clears the terminal screen to keep the interface clean and readable after each guess. ASCII art representing the Hangman is displayed to provide a visual representation of the player's progress and the consequences of incorrect guesses.
 
-_4) SCOREBOARD_ 
-
-I've added a scoreboard feature to track the wins and losses of the player, including a date and time log of the outcome. Although a scoreboard traditionally involves a record of the players name and a system tracking "high scores", I've decided to simplify the scoreboard as this appliation is a single-player game. In order to create this feature, I had to first design a function that tracks the wins and losses by added them to a csv file: The `add_to_scoreboard()` function achieves this by taking a single parameter "won", which is a boolean indicating whether the game has been won or not. Inside the `try:` block of this function, it opens the 'scoreboard.csv' file in append mode (as indicated by the "a"). It then generates a timestamp using the `datetime.now().strftime("%Y-%m-%d %H:%M:%S")` to represent the current date and time in a specific format; this is a mechanism is made available by the importing the datetime Python package, which one can see in the imported packages at the top of the page. It them determines the game result ("WON or "LOST") based on the value of the 'won' parameter. It then writes the timestamp, result and a newline character into the csv file. One can see I've included exception handling in this function which catches any IOError that might occur during file operations and subsequently prints an error message, as opposed to breaking the program.
-
-In order for the player to be able to view their scoreboard, I've included 2 paths; the first path is in the `main_menu()` and the second path is presented at the end of a game. This can be seen in the flowchart algorithm provided below. I've created the display using the `display_scoreboard` function. 
 
 
+#### _4) SCOREBOARD_ 
 
-<-- Include logic behind exception handling here // do a once over to see whether the variable scope is addressed -->
+I've added a scoreboard feature to track the wins and losses of the player, including a date and time log of the outcome. Although a scoreboard traditionally involves a record of the players name and a system tracking "high scores", I've decided to simplify the scoreboard as this appliation is a single-player game. In order to create this feature, I had to first design a function that tracks the wins and losses by added them to a csv file: The `add_to_scoreboard()` function achieves this by taking a single parameter "won", which is a boolean indicating whether the game has been won or not. Inside the `try:` block of this function, it opens the `scoreboard.csv` file in append mode (as indicated by the "a"). It then generates a timestamp using the `datetime.now().strftime("%Y-%m-%d %H:%M:%S")` to represent the current date and time in a specific format; this is a mechanism is made available by the importing the datetime Python package, which one can see in the imported packages at the top of the page. It them determines the game result ("WON or "LOST") based on the value of the 'won' parameter. It then writes the timestamp, result and a newline character into the csv file. One can see I've included exception handling in this function which catches any IOError that might occur during file operations and subsequently prints an error message, as opposed to breaking the program.
+
+In order for the player to be able to view their scoreboard, I've included 2 paths; the first path is in the `main_menu()` and the second path is presented at the end of a game. This can be seen in the flowchart algorithm provided below. I've created the display using the `display_scoreboard()` function. It first clears the terminal screen and enters a loop that will continue until the user decides to return to the main menu or quit the program. Within the loop, the `scoreboard.csv` file is opened in read mode (as indicated by "r"), and reads all lines from the file into the "scores" list. The if/else condition states that if the length of the "scores' list is greater than 1 (indicating there is at leader one entry in addition to the header), it prints a formatted scoreboard using the imported    `PrettyTable` library. If the scoreboard is empty, it prints a message informing the user. It then prompts the user for input, asking if they want to return to the main menu or quit. Depending on the user's input, it either calls the `main_menu()` function or `game_exit()` function. I've included exception handling to catch potential exceptions such as FileNotFoundError or IOError; generating an appropriate error message if they occur.
 
 
 ### Code Logic -- Flow Chart Algorithm
 
+
 ![flowchart](/src/assets/flowchart.jpg)
 
 The flowchart above depicts an algorithm explaining the logic of the code. The "start" and "end" points are represented by the traditional oval shapes and have been colour coded for clarity. As there are a junctions within the code that depend on user input, I've use the paralellograms to incidicate the input/output points and colour coded them in purple. The burgundy rectangles represent a "process", while the teal diamond represent decision points in the code. There are some points in the code that are both decision points and require user input, in which I've decided to keep them as parallelograms.
+
+
 
 ## Implementation Plan
 
