@@ -7,6 +7,7 @@ import random
 # Related third-party imports
 from colored import Fore, Back, Style # type:ignore
 from prettytable import PrettyTable # type:ignore
+from pyfiglet import Figlet # type:ignore
 from datetime import datetime
 
 # Local application/library specific
@@ -89,6 +90,8 @@ HANGMAN = [
 '''
 ]
 
+fig = Figlet(font='standard')
+
 # Class representing the Hangman game
 class Hangman:
     def __init__(self, word):
@@ -136,15 +139,15 @@ class Hangman:
     def game_over(self):
         if '_' not in self.current_progress:
             clear_terminal()
-            print("*************************************")
-            print(f"{Fore.WHITE}{Back.GREEN}\n!!!  YOU WON  !!!\n\nCongratulations!\n{Style.RESET}")
-            print("*************************************\n")
+            print("*************************************************************")
+            print(fig.renderText('!!!  YOU WIN  !!!'))
+            print("*************************************************************\n")
             add_to_scoreboard(True)
             reset()
             return True
         elif self.guesses_left == 0:
             clear_terminal()
-            print(f"{Fore.WHITE}{Back.RED}!!!  YOU LOSE  !!!{Style.RESET}\n")
+            print(fig.renderText('!!!  YOU LOSE  !!!'))
             print(HANGMAN[7])
             print(f"{Fore.WHITE}{Back.RED}\nBetter luck next time, bucko.{Style.RESET}")
             print(f"{Fore.WHITE}{Back.RED}\nThe correct word was: {self.word}{Style.RESET}\n")
@@ -221,8 +224,9 @@ def get_random_word(category):
 # Main menu function
 def main_menu():
     clear_terminal()
-    print(f"\n{Back.BLUE_VIOLET}~~~ LET'S PLAY HANGMAN! ~~~{Style.RESET}\n")
-    print("=================================\n")
+    print(fig.renderText('LET\'S PLAY HANGMAN'))
+    # print(f"\n{Back.BLUE_VIOLET}~~~ LET'S PLAY HANGMAN! ~~~{Style.RESET}\n")
+    print("=======================================================================\n")
     print(f"{Fore.BLUE_VIOLET}Enter [1] to START GAME{Style.RESET}")
     print(f"{Fore.BLUE_VIOLET}Enter [2] for GAME RULES{Style.RESET}")
     print(f"{Fore.BLUE_VIOLET}Enter [3] to DISPLAY SCOREBOARD{Style.RESET}")
@@ -278,7 +282,8 @@ def game_start():
         5: "CULINARY_DELIGHTS",
     }
 
-    print(f"\n{Back.BLUE_VIOLET}CATEGORIES:{Style.RESET}\n")
+    fig = Figlet(font='standard')
+    print(fig.renderText('CATEGORIES'))
     for num, category in categories.items():
         print(f"{num}. {category}")
     

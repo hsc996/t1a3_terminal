@@ -74,10 +74,15 @@ The flowchart above depicts an algorithm explaining the logic of the code. The "
 
 ## Implementation Plan
 
+- checklists
+- priorities
+- screenshots
 
 
 ## Project Management
 
+- trello board
+- screeshots
 
 ## Help Documentation
 
@@ -100,13 +105,13 @@ prettytable==3.10.0
 
 These dependencies have been accounted for in the bash scripts, and will thus be included automatically upon launch.
 
-#### _Installation_
+## Installation
 
-Step 1: Open your terminal. It is advised to use the terminal on your device, rather than an integrated terminal via your code editor.
+**_Step 1:_** Open your terminal. It is advised to use the terminal on your device, rather than an integrated terminal via your code editor.
 
 _Considerations_: This applicaion has been designed and tested on Linux system. If you are opening this appplication using a Windows device, you may need to install a [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/about) before launch.
 
-Step 2: Clone the Github repository via SSH:
+**_Step 2:_** Clone the Github repository via SSH:
 ```
 git clone git@github.com:hsc996/t1a3_terminal.git
 ```
@@ -115,22 +120,21 @@ or HTTP:
 git clone https://github.com/hsc996/t1a3_terminal.git
 ```
 
-Step 3: Navigate to the `src` directory:
+**_Step 3:_** Navigate to the `src` directory:
 ```
-cd src 
+cd t1a3_terminal/src 
 ```
-Step 4: If it is your first time using this application, use this command to execute permissions to the bash script:
+**_Step 4:_** If it is your first time using this application, use this command to execute permissions to the bash script:
 
 ```
 chmod +x run.sh
 ```
 _Note:_ If you've run this application before, you should be permitted to skip Step 4. However, do not skip this step if it is the first launch of this application on your device.
 
-Step 5: Execute the bash script:
+**_Step 5:_** Execute the bash script command to run the application:
 ```
 ./run.sh
 ```
-
 
 
 ## REFERENCES
@@ -138,4 +142,9 @@ Step 5: Execute the bash script:
 Van Rossum, G., Warsaw, B. and Coghlan, A. (2001) PEP 8 – Style Guide for Python Code. Available at: https://peps.python.org/pep-0008/ (Accessed: 25 April 2024).
 
 https://learn.microsoft.com/en-us/windows/wsl/about
+
+https://pypi.org/project/prettytable/
+
+https://pypi.org/project/colored/
+
 
