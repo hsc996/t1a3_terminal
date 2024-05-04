@@ -2,7 +2,6 @@
 import os
 import csv
 import random
-from datetime import datetime
 
 
 # Related third-party imports
@@ -342,7 +341,6 @@ if __name__ == "__main__":
 
 # Current issues:
 # {Fore.white} not working???
-# Ensure that the program doesn't break if csv file is empty (have it start at 0,0)
 
 
 
