@@ -93,28 +93,46 @@ As one can see on my checklists, I began simply by choosing a style guide. I the
 _Implementation of features_
 
 
-1) Categories menu
+
+**1) Welcome message + main menu**
+
+ - Print welcome message
+ - Print list of navigation options for user to select from
+ - Link user selection to corresponding functions via if/else statements
+ - Place conditional statement in a while loop so that it only breaks if user decides to quit
+
+
+**2) Categories menu**
 
  - Create a number of files, each containing words of different catgories
  - Create a dictionary called categories containing various categories for the game
- - Print the available categories to the user.
- - Prompt the user to select a category by entering a corresponding number.
+ - Print the available categories to the user and prompt the user to select a category by entering a corresponding number.
  - Ensure that the user's input is a valid number corresponding to one of the categories
- - Retrieve the selected category from the dictionary
- - Inform the user about the selected category
+ - Retrieve the selected category from the dictionary and inform the user about the selected category
  - Retrieve a random word from the selected category.
  - Initialize a Hangman game instance with the randomly selected word
  - Continue the game loop until it's over.
- - Within this loop:
-    - Display the number of remaining guesses to the user.
-    - Display the current progress of guessed letters and blanks.
-    - Ask the user to guess a letter
-    - Ensure that the input is a single letter. (exception handling)
-    - Update the game state based on the user's guess
-    - If the game is over, break the loop
+ - Within this loop: execute the function that start the game
 - Repeat the game or quit the program
 
 
+**3) Start game function + main game class**
+
+ - Create a class that will serve as the main game function
+ - Define a method and list of appropriate attributes required (word, remaining guesses, guessed letters, progress and stages)
+ - 
+
+4) Game Over function
+
+ - Define a game_over method of the Hangman class
+ - Use a conditional statement to determine whether game over or not
+ - `if '_' not in self.current_progress`
+
+5) Reset game function
+
+6) Exit game function
+
+7) Scoreboard
 
 
 #### _Considerations_
