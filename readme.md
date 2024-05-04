@@ -66,7 +66,8 @@ I've added a scoreboard feature to track the wins and losses of the player, incl
 In order for the player to be able to view their scoreboard, I've included 2 paths; the first path is in the `main_menu()` and the second path is presented at the end of a game. This can be seen in the flowchart algorithm provided below. I've created the display using the `display_scoreboard()` function. It first clears the terminal screen and enters a loop that will continue until the user decides to return to the main menu or quit the program. Within the loop, the `scoreboard.csv` file is opened in read mode (as indicated by "r"), and reads all lines from the file into the "scores" list. The if/else condition states that if the length of the "scores' list is greater than 1 (indicating there is at leader one entry in addition to the header), it prints a formatted scoreboard using the imported    `PrettyTable` library. If the scoreboard is empty, it prints a message informing the user. It then prompts the user for input, asking if they want to return to the main menu or quit. Depending on the user's input, it either calls the `main_menu()` function or `exit_game()` function. I've included exception handling to catch potential exceptions such as FileNotFoundError or IOError; generating an appropriate error message if they occur.
 
 
-### Code Logic -- Flow Chart Algorithm
+
+## Code Logic -- Flow Chart Algorithm
 
 
 ![flowchart](/src/assets/flowchart.jpg)
@@ -76,6 +77,7 @@ The flowchart above depicts an algorithm explaining the logic of the code. The "
 
 
 ## Implementation Plan
+
 
 _Project Kanban_
 
@@ -92,9 +94,10 @@ As one can see on my checklists, I began simply by choosing a style guide. I the
 
 
 
-_Implementation of features_
+### _Implementation of features_
 
-##### ~ WEEK 1 PLAN ~
+
+#### _~ WEEK 1 PLAN ~_
 
 **1) Welcome message + main menu**
 
@@ -141,7 +144,7 @@ _Implementation of features_
         - Return True to indicate the game is over.
 - Test the integration of both functions with other parts of the codebase.
 
-##### ~ WEEK 2 PLAN ~
+#### _~ WEEK 2 PLAN ~_
 
 
 **4) Reset game function**
@@ -182,12 +185,12 @@ _Implementation of features_
  - Replace main headings with chosen font to headings
 
 
-#### _Considerations_
+## Considerations
 
 This application will execute a function that clears the terminal upon launch. It is recommended to launch this application in a separate window if you want to avoid losing any important data you may have in your terminal.
 
 
-#### _Dependencies_
+## Dependencies
 
 In order to run this application, you must have Python 3 installed.
 
@@ -239,10 +242,12 @@ _Note:_ If you've run this application before, you should be permitted to skip S
 
 Van Rossum, G., Warsaw, B. and Coghlan, A. (2001) PEP 8 – Style Guide for Python Code. Available at: https://peps.python.org/pep-0008/ (Accessed: 25 April 2024).
 
-https://learn.microsoft.com/en-us/windows/wsl/about
 
-https://pypi.org/project/prettytable/
+Loewen, C., (2024) What is Windows Subsystem for Linux, learn.microsoft.com. Available at: https://learn.microsoft.com/en-us/windows/wsl/about.
 
-https://pypi.org/project/colored/
 
+Maurits, L. (2024) prettytable: A simple Python library for easily displaying tabular data in a visually appealing ASCII table format, PyPI. Available at: https://pypi.org/project/prettytable/.
+
+
+Zlatanidis, D., (2023) colored: Simple library for color and formatting to terminal, PyPI. Available at: https://pypi.org/project/colored/.
 

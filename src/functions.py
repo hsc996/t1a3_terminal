@@ -9,6 +9,7 @@ def clear_terminal():
 
 
 def exit_game():
+    clear_terminal()
     print(fig.renderText('SEEYA!'))
     print(f"{Fore.BLUE_VIOLET}Thanks for playing!{Style.RESET}\n\n")
     try:

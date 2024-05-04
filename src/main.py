@@ -193,6 +193,7 @@ def display_scoreboard():
 
                     response = input(F"\n{Fore.GREEN}Press 'M' to return to the main menu or 'Q' to quit the scoreboard: {Style.RESET}")
                     if response.lower() == 'm':
+                        clear_terminal()
                         main_menu()
                     elif response.lower() == 'q':
                         exit_game()
@@ -239,12 +240,10 @@ def main_menu():
             clear_terminal()
             game_start()
         elif menu_choice == "2":
-            clear_terminal()
             game_help()
         elif menu_choice == "3":
             display_scoreboard()
         elif menu_choice == "4":
-            clear_terminal()
             exit_game()
         else:
             print(f"\n{Fore.RED}Invalid option, please try again.{Style.RESET}")
@@ -252,6 +251,7 @@ def main_menu():
 
 # Game instructions
 def game_help():
+    clear_terminal()
     print(fig.renderText('HOW TO PLAY'))
     print("Select a category from which you would like your hidden word to be selected")
     print("\nThe hidden word you are presented will be represented by underscores. Each underscore will represent a letter.\nThe player will receive 7 guesses to guess each letter individually.")
@@ -328,7 +328,6 @@ def reset():
             elif reset == "S":
                 display_scoreboard()
             elif reset == "Q":
-                clear_terminal()
                 exit_game()
             else:
                 clear_terminal()
@@ -339,11 +338,3 @@ def reset():
 
 if __name__ == "__main__":
     main_menu()
-
-
-
-# Current issues:
-# {Fore.white} not working???
-
-
-
