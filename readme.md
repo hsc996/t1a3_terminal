@@ -81,17 +81,24 @@ The flowchart above depicts an algorithm explaining the logic of the code. The "
 
 _Project Kanban_
 
-![kanban_board](/src/assets/project_kanban.png)
+![kanban_board](/src/assets/kanban.png)
 
-_Roadmap_
+_Priority board_
 
-![roadmap](/src/assets/tasklist_roadmap.png)
+![priority_board](/src/assets/priority_board.png)
+
+_Checklists_
+
+![checklist1](/src/assets/checklist.png)
+
+![checklist2](src/assets/checklist2.png)
 
 
-I created an implementation plan using a Kanban board in Github Projects, which detailed a list of tasks in order of priority. I utilised the "roadmap" tab to create a visual display of my intended timeline by mapping the tasks in a priority list according to day. Although most major checklist items were added at the beginning of the planning process, there were also some "error handling" checklist items that were added as I encountered them. As each of these items were resolved, I marked them accordingly.
+I created an implementation plan using a Kanban board in Github Projects, which detailed a list of tasks in order of priority. I utilised the "priority board" roadmap tab to create a visual display of my intended timeline by mapping the tasks in a priority list according to day. Although most major checklist items were added at the beginning of the planning process, there were also some "error handling" checklist items that were added as I encountered them. As each of these items were resolved, I marked them accordingly.
 
-As one can see on my checklists, I began simply by choosing a style guide. I then created an algorithm flowchart in order to map out the code logic before commencing. Furthermore, I began by using `import os` and creating a function to clear the terminal which I knew I would be implementing throughout to achieve the intended aethetic. I stored this in a separate `.py` file to be imported into the main file.
+As one can see, I began simply by choosing a style guide. I then created an algorithm flowchart in order to map out the code logic before commencing. Furthermore, I began by using `import os` and creating a function to clear the terminal which I knew I would be implementing throughout to achieve the intended aethetic. I stored this in a separate `.py` file to be imported into the main file.
 
+Some of the tasks requiring further detail have checklists included in the comments.
 
 
 ### _Implementation of features_
