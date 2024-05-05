@@ -275,11 +275,10 @@ This application will execute a function that clears the terminal upon launch. I
 
 
 
-
 ## Dependencies
 
 
-In order to run this application, you must have Python 3 installed.
+In order to run this application, you must have Python 3 or higher installed. You may need to visit [How to install Python on Linux](https://opensource.com/article/20/4/install-python-linux) or [How to Install Python on Windows](https://phoenixnap.com/kb/how-to-install-python-3-windows) for further setup information.
 
 
 Below is a list of dependencies required for the app to run as intended:
