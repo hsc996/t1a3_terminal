@@ -159,6 +159,10 @@ class Hangman:
 # Function to add game result to the scoreboard
 def add_to_scoreboard(won):
     try:
+        # Create the file if it doesn't exist
+        if not os.path.exists("scoreboard.csv"):
+            open("scoreboard.csv", "w").close()
+        
         with open("scoreboard.csv", "a") as f:
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             result = "WON" if won else "LOST"
@@ -256,9 +260,9 @@ def main_menu():
 def game_help():
     clear_terminal()
     print(fig.renderText('HOW TO PLAY'))
-    print("Select a category from which you would like your hidden word to be selected")
+    print("Select a category from which you would like your hidden word to be selected.")
     print("\nThe hidden word you are presented will be represented by underscores. Each underscore will represent a letter.\nThe player will receive 7 guesses to guess each letter individually.")
-    print("\nEach correct letter guessed will replace the corresponding underscore, allowing the player to see where this\nletter resides in relation to the other letters within the hidden word")
+    print("\nEach correct letter guessed will replace the corresponding underscore, allowing the player to see where this\nletter resides in relation to the other letters within the hidden word.")
     print("\nHOWEVER, if the player guesses incorrectly, they will see the hangman drawing progress to the next stage and lose on of their lives")
     print("\nShould the player lose all of their lives, they will have killed the hangman and trigger GAME OVER.")
     print("\nShould the player correct all of the letters correctly before the hangman dies, they will WIN.\n")

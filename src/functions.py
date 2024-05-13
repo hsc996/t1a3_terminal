@@ -17,3 +17,6 @@ def exit_game():
     except Exception as e:
         print(f"\n{Fore.RED}Error occurred while exiting: {e}{Style.RESET}")
 
+def add_num(num1, num2):
+    return num1 + num2
+

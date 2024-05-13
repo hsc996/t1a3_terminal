@@ -16,6 +16,14 @@ else
     exit 1
 fi
 
+# Install colored
+pip install colored
+
+# Install prettytable
+pip install prettytable
+
+# Install pyfiglet
+pip install pyfiglet
 
 # Run app
 python3 main.py
