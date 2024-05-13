@@ -6,7 +6,7 @@ source setupcheck.sh
 if check_python; then
     if start_venv; then
         echo "Checks have all passed. Starting application.."
-        python3 ./modules/main.py
+        python3 ./src/main.py
     else
         echo "Error: Failed to set up virtual environment and install dependencies."
         exit 2
